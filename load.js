@@ -6,6 +6,9 @@ loadState.preload = function() {
 
 	//this.addImage( "background", "background.png" );
 	//this.addSpriteSheet( "characterSprite", "character.png", 150, 120 );
+
+	this.addImage( "cellImg", "yellow square.png" );
+
 };
 
 
