@@ -13,12 +13,32 @@ gameState.create = function(){
     //declare a cell group
     this.cellGroup = new Kiwi.Group( this );
 
-    //create cells
+    //create cells without overlaping themselves
     for(var i=0; i<4; i++) {
-        var x = Math.random()*(this.game.stage.width - 70),
+        //variables for the generation of cells
+        //x position, y position, cell object, condition bool
+        var x,y,c,b=true;
+        //cycle until the cell created is not overlaping any other cells
+        while(b) {
+            b = false;
+            x = Math.random()*(this.game.stage.width - 70);
             y = Math.random()*(this.game.stage.height - 170);
-        
-    	this.cellGroup.addChild( new cell(this, x, y, i) );
+            c = new cell(this, x, y, i);
+
+            console.log("Trying to create cell "+(i+1)+" in ("+Math.floor(x)+","+Math.floor(y)+")");
+            
+            var cs = this.cellGroup.members;
+            //cycle through the already created cells
+            for(var j=0; j<cs.length; j++) {
+                //if cell intersects with another cell start again
+                if(cs[j].box.bounds.intersects(c.box.bounds)) {
+                    b = true;
+                    console.log("Cell overlaps cell "+(j+1));
+                    break;
+                }
+            }
+        }
+    	this.cellGroup.addChild( c );
     }
 
     //declare a text field
@@ -50,7 +70,7 @@ gameState.update = function(){
         if(cells[i].box.bounds.contains(this.game.input.x,this.game.input.y)){
 
             //update text field
-            this.textField.text = "Cell " + cells[i].number;
+            this.textField.text = "Cell " + (cells[i].number+1);
 
             //if clicked
             if(this.game.input.isDown) {
