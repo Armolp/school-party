@@ -1,12 +1,13 @@
+//Initialise the Kiwi Game. 
 var gameOptions = {
 	renderer: Kiwi.RENDERER_WEBGL, 
-	width: 400,
+	width: 800,
 	height: 600
 }
-
-var game = new Kiwi.Game('content', 'game', null, gameOptions);
-
-game.states.addState( loadState );
-game.states.addState( gameState );
-
-game.states.switchState( "loadState" );
+ 
+var game = new Kiwi.Game('content', 'mygame', null, gameOptions);
+ 
+//Add all the States we are going to use.
+game.states.addState( Loading );
+game.states.addState( Play );
+game.states.switchState( "Loading" );
