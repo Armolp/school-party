@@ -86,15 +86,19 @@ mainMenuState.update = function(){
 };
 
 mainMenuState.newButton = function () {
-    this.game.states.switchState( "mainMenuState" );
+    clearMenu(this.menu);
+    this.game.states.switchState( "newCharState" );
 }
 mainMenuState.loadButton = function () {
-    this.game.states.switchState( "mainMenuState" );
+    clearMenu(this.menu);
+    this.game.states.switchState( "newCharState" );
 }
 mainMenuState.instructionsButton = function () {
-    this.game.states.switchState( "mainMenuState" );
+    clearMenu(this.menu);
+    this.game.states.switchState( "newCharState" );
 }
 mainMenuState.creditsButton = function () {
-    this.game.states.switchState( "mainMenuState" );
+    clearMenu(this.menu);
+    this.game.states.switchState( "newCharState" );
 }
 
