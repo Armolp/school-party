@@ -4,8 +4,8 @@ gameState.create = function(){
 
 	Kiwi.State.prototype.create.call(this);
 
-    //specify stage color(may be changed to a background image)
-	this.game.stage.color = "#74E474";
+    //pull woodBGD image
+    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.backgroundWood, 0, 0);
 
     //declare mouse input
     this.mouse = this.game.input.mouse;
@@ -57,7 +57,7 @@ gameState.create = function(){
     //variable used to track the order of the timeline
     this.counter = 1;
 
-    //this.addChild(this.background);
+    this.addChild(this.background);
     this.addChild(this.cellGroup);
     this.addChild(this.textField);
 };

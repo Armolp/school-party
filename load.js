@@ -4,7 +4,7 @@ loadState.preload = function() {
 
 	Kiwi.State.prototype.preload.call( this );
 
-	//this.addImage( "background", "background.png" );
+	this.addImage( "backgroundWood", "wood-background.png" );
 	//this.addSpriteSheet( "characterSprite", "character.png", 150, 120 );
 
 	this.addImage( "cellImg", "yellow square.png" );
