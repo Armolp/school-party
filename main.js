@@ -1,5 +1,5 @@
 function clearMenu(menu) {
-	console.log(menu);
+	//console.log(menu);
 	menu.container.parentElement.removeChild(menu.container);
 	/*while (menu.container.hasChildNodes()) {   
 	    menu.container.removeChild(menu.container.firstChild);
@@ -17,5 +17,7 @@ var game = new Kiwi.Game('content', 'game', null, gameOptions);
 game.states.addState( loadState );
 game.states.addState( mainMenuState );
 game.states.addState( newCharState );
+game.states.addState( loadGameState );
+game.states.addState( instructionsState );
 
 game.states.switchState( "loadState" );

@@ -6,6 +6,8 @@ loadState.preload = function() {
 
 	this.addImage( "backgroundWood", "wood-background.png" );
 	this.addImage( "newCharImg", "newChar.png" );
+	this.addImage( "saveCharImg", "saveChar.png" );
+	this.addImage( "instructionsImg", "instructions.png" );
 	//this.addSpriteSheet( "characterSprite", "character.png", 150, 120 );
 };
 

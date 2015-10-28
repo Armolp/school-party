@@ -91,11 +91,11 @@ mainMenuState.newButton = function () {
 }
 mainMenuState.loadButton = function () {
     clearMenu(this.menu);
-    this.game.states.switchState( "newCharState" );
+    this.game.states.switchState( "loadGameState" );
 }
 mainMenuState.instructionsButton = function () {
     clearMenu(this.menu);
-    this.game.states.switchState( "newCharState" );
+    this.game.states.switchState( "instructionsState" );
 }
 mainMenuState.creditsButton = function () {
     clearMenu(this.menu);
