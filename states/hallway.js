@@ -1,14 +1,17 @@
-var teacherRoomState = new Kiwi.State( "teacherRoomState" );
+var hallwayState = new Kiwi.State( "hallwayState" );
 
-teacherRoomState.create = function() {
+hallwayState.create = function() {
+
     Kiwi.State.prototype.create.call( this );
+
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.teacherRoomImg, 0, 0 );
     this.character = new Kiwi.GameObjects.Sprite(
-        this, this.textures.characterSprite, 226, 261 );
+        this, this.textures.characterSprite, 50, 261 );
+    
     this.leftKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A );
     this.rightKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D );
     this.downKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.S );
-    this.stateKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
+    //this.stateKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
 
     this.character.animation.add("idleright", [ 0 ], 0.1, false );
     this.character.animation.add("crouchright", [ 1 ], 0.1, false );
@@ -21,18 +24,13 @@ teacherRoomState.create = function() {
 
     this.character.animation.play( "idleright" );
 
-    this.addChild( this.background );
+    //this.addChild( this.background );
     this.addChild( this.character );
 };
 
 
-teacherRoomState.update = function() {
+hallwayState.update = function() {
     Kiwi.State.prototype.update.call( this );
-
-    if ( this.character.transform.x > 720 ) {
-
-        this.game.states.switchState( "hallwayState" );
-    }
 
     if ( this.downKey.isDown ) {
 
@@ -43,8 +41,11 @@ teacherRoomState.update = function() {
     else if ( this.leftKey.isDown ) {
 
         this.facing = "left";
-        if ( this.character.transform.x > 220 ) {
+        if ( this.character.transform.x > -70 ) {
             this.character.transform.x -= 3;
+        }
+        else {
+            this.game.states.switchState( "teacherRoomState" );
         }
         if (this.character.animation.currentAnimation.name !== "moveleft") {
             this.character.animation.play( "moveleft" );
@@ -53,8 +54,11 @@ teacherRoomState.update = function() {
     else if ( this.rightKey.isDown ) {
 
         this.facing = "right";
-        if ( this.character.transform.x < 740 ) {
+        if ( this.character.transform.x < 720 ) {
             this.character.transform.x += 3;
+        }
+        else{
+            this.game.states.switchState( "rouletteState" );
         }
         if ( this.character.animation.currentAnimation.name !== "moveright" ) {
             this.character.animation.play("moveright");
