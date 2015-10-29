@@ -2,12 +2,20 @@ var mainMenuState = new Kiwi.State( "mainMenuState" );
 
 mainMenuState.create = function(){
 
-	Kiwi.State.prototype.create.call(this);
+    Kiwi.State.prototype.create.call(this);
 
-	this.game.stage.color = "4488cc";
+    this.game.stage.color = "4488cc";
 
     this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.backgroundWood, 0, 0);
 
+    //declare a text field
+    this.textField = new Kiwi.GameObjects.Textfield(this, 'Temporary Title Header');
+    this.textField.x = this.game.stage.width / 2;
+    this.textField.y = 50;
+    this.textField.color = '#FFFFFF';
+    this.textField.fontFamily = 'Helvetica, sans-serif';
+    this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    
     var menuW = 100;
 
     // Adds a menu widget to the defaultHUD of the game.
@@ -55,14 +63,6 @@ mainMenuState.create = function(){
     this.bttnCredits.style.padding = '0.5em 1em';
     this.bttnCredits.style.backgroundColor = '#09c';
 
-    //declare a text field
-    this.textField = new Kiwi.GameObjects.Textfield(this, 'Temporary Title Header');
-    this.textField.x = this.game.stage.width / 2;
-    this.textField.y = 50;
-    this.textField.color = '#FFFFFF';
-    this.textField.fontFamily = 'Helvetica, sans-serif';
-    this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
-
     this.menu = new Kiwi.HUD.Widget.Menu( this.game, this.game.stage.width/2, 200 );
     this.menu.addMenuItem( this.bttnNew );
     this.menu.addMenuItem( this.bttnLoad );
@@ -99,6 +99,6 @@ mainMenuState.instructionsButton = function () {
 }
 mainMenuState.creditsButton = function () {
     clearMenu(this.menu);
-    this.game.states.switchState( "newCharState" );
+    this.game.states.switchState( "creditsState" );
 }
 

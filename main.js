@@ -1,9 +1,5 @@
 function clearMenu(menu) {
-	//console.log(menu);
 	menu.container.parentElement.removeChild(menu.container);
-	/*while (menu.container.hasChildNodes()) {   
-	    menu.container.removeChild(menu.container.firstChild);
-	}*/
 }
 
 var gameOptions = {
@@ -19,5 +15,7 @@ game.states.addState( mainMenuState );
 game.states.addState( newCharState );
 game.states.addState( loadGameState );
 game.states.addState( instructionsState );
+game.states.addState( creditsState );
+game.states.addState( teacherRoomState );
 
 game.states.switchState( "loadState" );

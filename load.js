@@ -4,11 +4,13 @@ loadState.preload = function() {
 
 	Kiwi.State.prototype.preload.call( this );
 
-	this.addImage( "backgroundWood", "wood-background.png" );
-	this.addImage( "newCharImg", "newChar.png" );
-	this.addImage( "saveCharImg", "saveChar.png" );
-	this.addImage( "instructionsImg", "instructions.png" );
-	//this.addSpriteSheet( "characterSprite", "character.png", 150, 120 );
+	this.addImage( "backgroundWood", "assets/wood-background.png" );
+	this.addImage( "newCharImg", "assets/newChar.png" );
+	this.addImage( "saveCharImg", "assets/saveChar.png" );
+	this.addImage( "instructionsImg", "assets/instructions.png" );
+	this.addImage( "creditsImg", "assets/credits.png" );
+	this.addImage( "teacherRoomImg", "assets/teacherRoom.png" );
+	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
 };
 
 
