@@ -20,5 +20,6 @@ game.states.addState( teacherRoomState );
 game.states.addState( hallwayState );
 game.states.addState( rouletteState );
 game.states.addState( timelineGameState );
+game.states.addState( catchGameState );
 
 game.states.switchState( "loadState" );
