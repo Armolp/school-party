@@ -1,5 +1,5 @@
 # school-party
-![alt tag](http://i.imgur.com/LAhzxh7.png)
+![alt tag](https://raw.githubusercontent.com/diegowifi/school-party/master/assets/mainMenuBG.png)
 
 ## Brief
 
