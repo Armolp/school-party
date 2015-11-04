@@ -3,8 +3,7 @@ var loadState = new Kiwi.State( "loadState" );
 loadState.preload = function() {
 
 	Kiwi.State.prototype.preload.call( this );
-
-	/*
+	
 	this.game.states.rebuildLibraries();
 
 	this.game.stage.color = "#E0EDF1";
@@ -20,7 +19,7 @@ loadState.preload = function() {
 	this.tweenIn.to(
 		{ alpha: 1 }, 1000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
 
-	this.tweenIn.start();*/
+	this.tweenIn.start();
 
 	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
@@ -40,17 +39,18 @@ loadState.create = function(){
 
 	Kiwi.State.prototype.create.call( this );
 
-	/*
+	
 	console.log( "inside create of loadingState" );
 
 	this.tweenOut = this.game.tweens.create( this.logo );
 
 	this.tweenOut.to(
-		{ alpha: 0 }, 1000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
+		{ alpha: 0 }, 2000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
 
 	this.tweenOut.onComplete( this.switchToMain, this );
 
-	this.tweenOut.start();*/
+	this.tweenOut.start();
+
 	this.switchToMain();
 }
 
