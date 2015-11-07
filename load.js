@@ -45,7 +45,7 @@ loadState.create = function(){
 	this.tweenOut = this.game.tweens.create( this.logo );
 
 	this.tweenOut.to(
-		{ alpha: 0 }, 2000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
+		{ alpha: 0 }, 3000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
 
 	this.tweenOut.onComplete( this.switchToMain, this );
 
