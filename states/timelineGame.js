@@ -109,5 +109,5 @@ var cell = function( state, x, y, number){
     }
     */
 };
-//Second - extend the class
+//extend the class
 Kiwi.extend( cell, Kiwi.GameObjects.Sprite );

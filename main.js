@@ -25,5 +25,6 @@ game.states.addState( rouletteState );
 
 game.states.addState( timelineGameState );
 game.states.addState( catchGameState );
+game.states.addState( mazeGameState );
 
 game.states.switchState( "preloader" );

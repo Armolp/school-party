@@ -21,6 +21,7 @@ loadState.preload = function() {
 
 	this.tweenIn.start();
 
+	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
 	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
 	this.addImage( "newCharImg", 			"assets/newChar.png" );
@@ -29,8 +30,8 @@ loadState.preload = function() {
 	this.addImage( "creditsImg", 			"assets/credits.png" );
 	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
 	this.addImage( "squareImg", 			"assets/red square.png" );
-	this.addImage( "loadingImage", 			"assets/loadingImage.png", true );
 	this.addImage( "background", 			"assets/jungle.png" );
+	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles.png", 36, 36 );
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
 };
 
@@ -55,5 +56,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mainMenuState" );
+	this.game.states.switchState( "mazeGameState" );
 };
