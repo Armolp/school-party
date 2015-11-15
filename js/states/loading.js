@@ -9,18 +9,18 @@ LoadingState.preload = function () {
 	Kiwi.State.prototype.preload.call( this );
 
 	this.game.stage.color = "000000";
+    
+    // Nave 
+    this.addImage( 
+    	"Nave", 
+    	"assets/img/Naveesp.png" );
 
-	this.addImage(
-		"spaceground",
-		"assets/img/spaceground.png" );
-	this.addSpriteSheet(
-		"FlameSprite",
-		"assets/img/FlameSprite.png",
-		300,
-		300 );
+    //Enemigos
+      this.addImage( 
+      	"enemigos", 
+    	"assets/img/ENE.png" );
 
-	// NEW
-	// Particle sprites
+    // Particle sprites
 	this.addImage(
 		"particle",
 		"assets/img/particle_01.png" );
