@@ -24,14 +24,20 @@ loadState.preload = function() {
 	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
 	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
+
 	this.addImage( "newCharImg", 			"assets/newChar.png" );
 	this.addImage( "saveCharImg", 			"assets/saveChar.png" );
 	this.addImage( "instructionsImg", 		"assets/instructions.png" );
 	this.addImage( "creditsImg", 			"assets/credits.png" );
+
 	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
+
 	this.addImage( "squareImg", 			"assets/red square.png" );
 	this.addImage( "background", 			"assets/jungle.png" );
+	this.addImage( "mazeCharImg", 			"assets/mazeChar.png" );
+	this.addImage( "mazeGoalImg", 			"assets/mazeGoal.png" );
 	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles.png", 36, 36 );
+
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
 };
 
