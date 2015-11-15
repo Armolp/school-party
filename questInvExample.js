@@ -37,8 +37,8 @@ myState.create = function(){
     this.bagGroup = new Kiwi.Group(this);
     this.addChild(this.bagGroup);
 
-    this.leftKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A);
-    this.rightKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D);
+    this.leftKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.LEFT);
+    this.rightKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.RIGHT);
 
     this.coinText = new Kiwi.GameObjects.Textfield(this, 'Money Collected: 0', 10, 10, '#000');
     this.coinText.fontSize = 20;
@@ -133,16 +133,20 @@ myState.update = function(){
         this.createItem();
 
     if(this.leftKey.isDown){
-        this.cowboy.scaleX = -1;
-        this.cowboy.x-=3.5;
-        if(this.cowboy.animation.currentAnimation.name!='move')
-            this.cowboy.animation.switchTo('move', true);
+        if(this.cowboy.x >= -45){
+            this.cowboy.scaleX = -1;
+            this.cowboy.x-=7;
+            if(this.cowboy.animation.currentAnimation.name!='move')
+                this.cowboy.animation.switchTo('move', true);
+        }
     }
     else if(this.rightKey.isDown){
-        this.cowboy.scaleX = 1;
-        this.cowboy.x+=3.5;
-        if(this.cowboy.animation.currentAnimation.name!='move')
-            this.cowboy.animation.switchTo('move', true);
+        if(this.cowboy.x <= 665) {
+            this.cowboy.scaleX = 1;
+            this.cowboy.x+=7;
+            if(this.cowboy.animation.currentAnimation.name!='move')
+                this.cowboy.animation.switchTo('move', true);
+        }
     }
     else
         this.cowboy.animation.switchTo('idle');
