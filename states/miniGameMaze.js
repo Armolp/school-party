@@ -7,6 +7,7 @@ mazeGameState.create = function(){
 	this.dimension = 12;
     this.offsetX = 168;
     this.offsetY = 60;
+    this.moving = false;
 
 	this.game.stage.color = "4488cc";
 
@@ -181,23 +182,62 @@ mazeGameState.update = function(){
 
 	Kiwi.State.prototype.update.call( this );
 
+    
     var s = this.cellGroup.members[Math.floor(this.charY)*this.dimension + Math.floor(this.charX)].walls;
 
-    if( this.upKey.isDown && s[0]=='u' ) {
-        this.charY -= .1;
+    if(this.moving) {
+        if(this.character.x < this.charX*36 + this.offsetX) {
+            this.character.x += 4;
+        }
+        else if(this.character.x > this.charX*36 + this.offsetX) {
+            this.character.x -= 4;
+        }
+        if(this.character.y < this.charY*36 + this.offsetY) {
+            this.character.y += 4;
+        }
+        else if(this.character.y > this.charY*36 + this.offsetY) {
+            this.character.y -= 4;
+        }
+        if(this.character.x == this.charX*36 + this.offsetX && this.character.y == this.charY*36 + this.offsetY) {
+            this.moving = false;
+        }
+    }
+    else if( this.upKey.isDown && s[0]=='u' ) {
+        this.charY -= 1;
+        this.moving = true;
     }
     else if( this.downKey.isDown && s[1]=='d' ) {
-        this.charY += .1;
+        this.charY += 1;
+        this.moving = true;
     }
     else if( this.leftKey.isDown && s[2]=='l' ) {
-        this.charX -= .1;
+        this.charX -= 1;
+        this.moving = true;
     }
     else if( this.rightKey.isDown && s[3]=='r' ) {
-        this.charX += .1;
+        this.charX += 1;
+        this.moving = true;
+    }
+
+    /*
+     var s = this.cellGroup.members[Math.floor(this.charY)*this.dimension + Math.floor(this.charX)].walls;
+
+    if( this.upKey.isDown && s[0]=='u' ) {
+        this.charY -= 1;
+    }
+    else if( this.downKey.isDown && s[1]=='d' ) {
+        this.charY += 1;
+    }
+    else if( this.leftKey.isDown && s[2]=='l' ) {
+        this.charX -= 1;
+    }
+    else if( this.rightKey.isDown && s[3]=='r' ) {
+        this.charX += 1;
     }
 
     this.character.transform.x = this.charX*36 + this.offsetX;
     this.character.transform.y = this.charY*36 + this.offsetY;
+    }*/
 
     this.textField.text = "("+Math.floor(this.charX)+","+Math.floor(this.charY)+") "+ s;
 
