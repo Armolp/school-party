@@ -24,6 +24,15 @@ LoadingState.preload = function () {
 	this.addImage(
 		"particle",
 		"assets/img/particle_01.png" );
+//laser
+this.addImage(
+    "Laser",
+    "assets/img/laser.png" );
+
+this.addSpriteSheet(
+    "Exp",
+    "assets/img/expsp.png",192,207 );
+
 };
 
 LoadingState.create = function() {
