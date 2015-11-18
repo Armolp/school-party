@@ -1,0 +1,57 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+  <script type="text/javascript" src="space-questions.js"></script>
+</head>
+
+<body>
+  <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form name="question" method="post" style="width:200px; margin:0 auto;">
+          <div class="form-group">
+            <label for="question">Pregunta</label>
+            <input id="question" class="form-control" type="text" name="question" placeholder="Cuánto es 2 + 2?">
+          </div>
+          <div class="form-group">
+            <label for="a">Primera opción</label>
+            <input id="a" class="form-control" type="text" name="a" placeholder="2">
+          </div>
+          <div class="form-group">
+            <label for="b">Segunda opción</label>
+            <input id="b" class="form-control" type="text" name="b" placeholder="3">
+          </div>
+          <div class="form-group">
+            <label for="c">Tercera opción</label>
+            <input id="c" class="form-control" type="text" name="c" placeholder="4">
+          </div>
+          <div class="form-group">
+            <label for="answer">Respuesta</label>
+            <input id="answer" class="form-control" type="text" name="answer" placeholder="4">
+          </div>
+          <button type="button" class="btn btn-success" onclick="questions()">Agregar pregunta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    Parse.initialize("AK26J8RDJqlwxb2wewzz4sE7dpvYJOdVstu7v6be", "RrkuVkdBBws0vADmr1kb8SkGGu1aZm49g9qsUJiX");
+  </script>
+</body>
+
+</html>

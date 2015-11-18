@@ -1,0 +1,64 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+  <script type="text/javascript" src="signup-login.js"></script>
+  <script type="text/javascript" src="questions.js"></script>
+</head>
+
+<body>
+  <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form name="signUp" method="post" style="width:200px; margin:0 auto;">
+          <div class="form-group">
+            <label for="username">Nombre de usuario</label>
+            <input id="username" class="form-control" type="text" name="username" placeholder="diegowifi">
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input id="password" class="form-control" type="password" name="password" placeholder="12345">
+          </div>
+          <div class="form-group">
+            <label for="password">Correo electrónico</label>
+            <input id="email" class="form-control" type="email" name="email" placeholder="diego@outlook.com">
+          </div>
+          <button type="button" class="btn btn-success" onclick="register()">Registrarse</button>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <form name="LogIn" method="post" style="width:200px; margin:0 auto;">
+          <div class="form-group">
+            <label for="existing-username">Nombre de usuario</label>
+            <input id="existing-username" class="form-control" type="text" name="username" placeholder="diegowifi">
+          </div>
+          <div class="form-group">
+            <label for="existing-password">Contraseña</label>
+            <input id="existing-password" class="form-control" type="password" name="password" placeholder="12345">
+          </div>
+          <button type="button" class="btn btn-success" onclick="login()">Iniciar sesión</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    Parse.initialize("AK26J8RDJqlwxb2wewzz4sE7dpvYJOdVstu7v6be", "RrkuVkdBBws0vADmr1kb8SkGGu1aZm49g9qsUJiX");
+  </script>
+</body>
+
+</html>
