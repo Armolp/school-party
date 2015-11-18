@@ -6,133 +6,114 @@ rouletteState.create = function(){
 
     this.game.stage.color = "4488cc";
 
-    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.backgroundWood, 0, 0);
+    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.rouletteBGImg, 0, 0);
 
     //declare a text field
     this.textField = new Kiwi.GameObjects.Textfield(this, 'Roulette Room');
     this.textField.x = this.game.stage.width / 2;
-    this.textField.y = 50;
+    this.textField.y = 10;
     this.textField.color = '#FFFFFF';
     this.textField.fontFamily = 'Helvetica, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
-    
+
+    this.ruleta = new Kiwi.GameObjects.StaticImage( this, this.textures.rouletteImg, 184, 46 );
+
+    this.ruleta.rotPointX = this.ruleta.width * 0.5;
+    this.ruleta.rotPointY = this.ruleta.height * 0.5;
+
     var menuW = 100;
 
-    // Adds a menu widget to the defaultHUD of the game.
-    this.bttnSpace = new Kiwi.HUD.Widget.MenuItem( this.game, 'Space', -menuW, 0 );
-    this.bttnSpace.style.color = 'white';
-    this.bttnSpace.style.fontFamily = 'Helvetica,sans-serif';
-    this.bttnSpace.style.display = 'block';
-    this.bttnSpace.style.boxSizing = 'border-box';
-    this.bttnSpace.style.width = (menuW * 2).toString() + 'px';
-    this.bttnSpace.style.textAlign = 'center';
-    this.bttnSpace.style.cursor = 'pointer';
-    this.bttnSpace.style.padding = '0.5em 1em';
-    this.bttnSpace.style.backgroundColor = '#9c0';
-
-    this.bttnTimeline = new Kiwi.HUD.Widget.MenuItem( this.game, 'Timeline', -menuW, 60 );
-    this.bttnTimeline.style.color = 'white';
-    this.bttnTimeline.style.fontFamily = 'Helvetica,sans-serif';
-    this.bttnTimeline.style.display = 'block';
-    this.bttnTimeline.style.boxSizing = 'border-box';
-    this.bttnTimeline.style.width = (menuW * 2).toString() + 'px';
-    this.bttnTimeline.style.textAlign = 'center';
-    this.bttnTimeline.style.cursor = 'pointer';
-    this.bttnTimeline.style.padding = '0.5em 1em';
-    this.bttnTimeline.style.backgroundColor = '#c09';
-
-    this.bttnCatch = new Kiwi.HUD.Widget.MenuItem( this.game, 'Catch', -menuW, 120 );
-    this.bttnCatch.style.color = 'white';
-    this.bttnCatch.style.fontFamily = 'Helvetica,sans-serif';
-    this.bttnCatch.style.display = 'block';
-    this.bttnCatch.style.boxSizing = 'border-box';
-    this.bttnCatch.style.width = (menuW * 2).toString() + 'px';
-    this.bttnCatch.style.textAlign = 'center';
-    this.bttnCatch.style.cursor = 'pointer';
-    this.bttnCatch.style.padding = '0.5em 1em';
-    this.bttnCatch.style.backgroundColor = '#09c';
-
-    this.bttnPairs = new Kiwi.HUD.Widget.MenuItem( this.game, 'Pairs', -menuW, 180 );
-    this.bttnPairs.style.color = 'white';
-    this.bttnPairs.style.fontFamily = 'Helvetica,sans-serif';
-    this.bttnPairs.style.display = 'block';
-    this.bttnPairs.style.boxSizing = 'border-box';
-    this.bttnPairs.style.width = (menuW * 2).toString() + 'px';
-    this.bttnPairs.style.textAlign = 'center';
-    this.bttnPairs.style.cursor = 'pointer';
-    this.bttnPairs.style.padding = '0.5em 1em';
-    this.bttnPairs.style.backgroundColor = '#9c0';
-
-    this.bttnMaze = new Kiwi.HUD.Widget.MenuItem( this.game, 'Maze', -menuW, 240 );
-    this.bttnMaze.style.color = 'white';
-    this.bttnMaze.style.fontFamily = 'Helvetica,sans-serif';
-    this.bttnMaze.style.display = 'block';
-    this.bttnMaze.style.boxSizing = 'border-box';
-    this.bttnMaze.style.width = (menuW * 2).toString() + 'px';
-    this.bttnMaze.style.textAlign = 'center';
-    this.bttnMaze.style.cursor = 'pointer';
-    this.bttnMaze.style.padding = '0.5em 1em';
-    this.bttnMaze.style.backgroundColor = '#c09';
-
-    this.bttnConnect = new Kiwi.HUD.Widget.MenuItem( this.game, 'Connect', -menuW, 300 );
-    this.bttnConnect.style.color = 'white';
-    this.bttnConnect.style.fontFamily = 'Helvetica,sans-serif';
-    this.bttnConnect.style.display = 'block';
-    this.bttnConnect.style.boxSizing = 'border-box';
-    this.bttnConnect.style.width = (menuW * 2).toString() + 'px';
-    this.bttnConnect.style.textAlign = 'center';
-    this.bttnConnect.style.cursor = 'pointer';
-    this.bttnConnect.style.padding = '0.5em 1em';
-    this.bttnConnect.style.backgroundColor = '#09c';
+    this.bttnSpin = new Kiwi.HUD.Widget.MenuItem( this.game, 'Girar ruleta', -menuW, 340 );
+    this.bttnSpin.style.color = 'white';
+    this.bttnSpin.style.fontFamily = 'Helvetica,sans-serif';
+    this.bttnSpin.style.display = 'block';
+    this.bttnSpin.style.boxSizing = 'border-box';
+    this.bttnSpin.style.width = (menuW * 2).toString() + 'px';
+    this.bttnSpin.style.textAlign = 'center';
+    this.bttnSpin.style.cursor = 'pointer';
+    this.bttnSpin.style.padding = '0.5em 1em';
+    this.bttnSpin.style.backgroundColor = '#9c0';
 
     this.menu = new Kiwi.HUD.Widget.Menu( this.game, this.game.stage.width/2, 120 );
-    this.menu.addMenuItem( this.bttnSpace );
-    this.menu.addMenuItem( this.bttnTimeline );
-    this.menu.addMenuItem( this.bttnCatch );
-    this.menu.addMenuItem( this.bttnPairs );
-    this.menu.addMenuItem( this.bttnMaze );
-    this.menu.addMenuItem( this.bttnConnect );
+    this.menu.addMenuItem( this.bttnSpin );
     this.game.huds.defaultHUD.addWidget( this.menu );
-    
-    this.menu.getMenuItem(0).input.onDown.add( this.swchSpace, this );
-    this.menu.getMenuItem(1).input.onDown.add( this.swchTimeline, this );
-    this.menu.getMenuItem(2).input.onDown.add( this.swchCatch, this );
-    this.menu.getMenuItem(3).input.onDown.add( this.swchPairs, this );
-    this.menu.getMenuItem(4).input.onDown.add( this.swchMaze, this );
-    this.menu.getMenuItem(5).input.onDown.add( this.swchConnect, this );
 
-    //this.addChild(this.background);
+    this.menu.getMenuItem(0).input.onDown.add( this.swchSpin, this );
+
+    this.step = 0;
+    this.rnd = 1;
+    this.bool = false;
+
+    this.addChild(this.background);
     this.addChild(this.textField);
+    this.addChild(this.ruleta);
 };
 
 rouletteState.update = function(){
 
     Kiwi.State.prototype.update.call( this );
+    
+    if(this.step > 0) {
+    	//increase rotation in a senoidal increment
+        this.ruleta.rotation += 0.1*Math.sin(this.step - Math.PI/2) + 0.1;
+
+        //if this.step =~ Math.PI (Highest value) spend a random number of frames to create a random roulette choice
+        if(Math.PI - 0.1 < this.step && this.step < Math.PI + 0.1 && this.rnd > 0) {
+            this.rnd--;
+        }
+        else {
+            this.step -= 0.1;
+        }
+    }
+    else {
+		
+    	//if its the first time rnd equals 0 then calculate the roulette choice
+        if(this.rnd == 0) {
+        	//switch rnd value to 1 to prevent this from happening every tic
+	    	this.rnd = 1;
+
+        	//calculate a value from 0 to 5 from the angle of rotation of the image
+        	var c = Math.floor(this.ruleta.rotation%(2*Math.PI) % 6);
+
+        	this.textField.text = c;
+
+        	//switch to the game state in each case
+        	if(c == 0) {
+    			clearMenu(this.menu);
+				this.game.states.switchState( "catchGameState" );
+        	}
+        	else if(c == 1) {
+    			clearMenu(this.menu);
+				this.game.states.switchState( "mazeGameState" );
+        	}
+        	else if(c == 2) {
+    			clearMenu(this.menu);
+				this.game.states.switchState( "SpaceGameState" );
+        	}
+        	else if(c == 3) {
+    			clearMenu(this.menu);
+				this.game.states.switchState( "pairGameState" );
+        	}
+        	else if(c == 4) {
+				this.step = 2*Math.PI;
+    			this.rnd = Math.floor(Math.random()*40) + 50;        		
+				this.textField.text = this.rnd;
+        	}
+        	else if(c == 5) {
+    			clearMenu(this.menu);
+				this.game.states.switchState( "timelineGameState" );
+        	}	
+        }
+
+    }//end else
+
 
 };
 
-rouletteState.swchSpace = function () {
-    clearMenu(this.menu);
-    this.game.states.switchState( "spaceGameState" );
+rouletteState.swchSpin = function () {
+	//start moving the roulette and use a random number to choose a minigame
+    this.step = 2*Math.PI;
+    //this.rnd = Math.floor(Math.random()*40) + 50;
+    this.rnd = 22;
+    this.textField.text = "Que te tocara esta vez?";
 }
-rouletteState.swchTimeline = function () {
-    clearMenu(this.menu);
-    this.game.states.switchState( "timelineGameState" );
-}
-rouletteState.swchCatch = function () {
-    clearMenu(this.menu);
-    this.game.states.switchState( "catchGameState" );
-}
-rouletteState.swchPairs = function () {
-    clearMenu(this.menu);
-    this.game.states.switchState( "pairsGameState" );
-}
-rouletteState.swchMaze = function () {
-    clearMenu(this.menu);
-    this.game.states.switchState( "mazeGameState" );
-}
-rouletteState.swchConnect = function () {
-    clearMenu(this.menu);
-    this.game.states.switchState( "connectState" );
-}
-

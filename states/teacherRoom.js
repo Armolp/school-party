@@ -1,10 +1,13 @@
 var teacherRoomState = new Kiwi.State( "teacherRoomState" );
 
 teacherRoomState.create = function() {
+
     Kiwi.State.prototype.create.call( this );
+
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.teacherRoomImg, 0, 0 );
     this.character = new Kiwi.GameObjects.Sprite(
         this, this.textures.characterSprite, 226, 261 );
+
     this.leftKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A );
     this.rightKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D );
     this.downKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.S );
@@ -21,12 +24,17 @@ teacherRoomState.create = function() {
 
     this.character.animation.play( "idleright" );
 
+    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'mainTheme', 1, true );
+
+    this.backgroundMusic.play();
+
     this.addChild( this.background );
     this.addChild( this.character );
 };
 
 
 teacherRoomState.update = function() {
+
     Kiwi.State.prototype.update.call( this );
 
     if ( this.character.transform.x > 720 ) {

@@ -4,7 +4,7 @@ hallwayState.create = function() {
 
     Kiwi.State.prototype.create.call( this );
 
-    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.teacherRoomImg, 0, 0 );
+    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.hallwayBGImg, 0, 0 );
     this.character = new Kiwi.GameObjects.Sprite(
         this, this.textures.characterSprite, 50, 261 );
     
@@ -24,7 +24,7 @@ hallwayState.create = function() {
 
     this.character.animation.play( "idleright" );
 
-    //this.addChild( this.background );
+    this.addChild( this.background );
     this.addChild( this.character );
 };
 

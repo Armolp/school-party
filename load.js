@@ -31,6 +31,9 @@ loadState.preload = function() {
 	this.addImage( "creditsImg", 			"assets/credits.png" );
 
 	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
+	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
+	this.addImage( "rouletteImg",			"assets/ruleta.png" );
+	this.addImage( "rouletteBGImg",			"assets/rouletteBG.png" );
 
 	this.addImage( "squareImg", 			"assets/red square.png" );
 	this.addImage( "background", 			"assets/jungle.png" );
@@ -39,13 +42,12 @@ loadState.preload = function() {
 	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles.png", 36, 36 );
 
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
+	this.addAudio("mainTheme", 				"assets/Enchanted-Valley.wav" );
 };
-
 
 loadState.create = function(){
 
 	Kiwi.State.prototype.create.call( this );
-
 	
 	console.log( "inside create of loadingState" );
 
@@ -62,5 +64,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mazeGameState" );
+	this.game.states.switchState( "mainMenuState" );
 };
