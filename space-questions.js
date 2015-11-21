@@ -16,7 +16,7 @@ function getData() {
             var b = spaceQuestion.get("b");
             var c = spaceQuestion.get("c");
             var answer = spaceQuestion.get("answer");
-            console.log(question + "\n" + a + "\n" + b + "\n" + c + "\n" + answer);
+            // console.log(question + "\n" + a + "\n" + b + "\n" + c + "\n" + answer);
           },
           error: function(object, error) {
             // The object was not retrieved successfully.
@@ -31,26 +31,4 @@ function getData() {
   });
 }
 
-
-function questions() {
-
-  spaceQuestion.set("question", document.getElementById("question").value);
-  spaceQuestion.set("a", document.getElementById("a").value);
-  spaceQuestion.set("b", document.getElementById("b").value);
-  spaceQuestion.set("c", document.getElementById("c").value);
-  spaceQuestion.set("answer", document.getElementById("answer").value);
-
-  spaceQuestion.save(null, {
-    success: function(spaceQuestion) {
-      // Execute any logic that should take place after the object is saved.
-      // alert('New object created with objectId: ' + spaceQuestion.id);
-      alert("Pregunta guardada");
-      window.location.reload();
-    },
-    error: function(spaceQuestion, error) {
-      // Execute any logic that should take place if the save fails.
-      // error is a Parse.Error with an error code and message.
-      alert('Failed to create new object, with error code: ' + error.message);
-    }
-  });
-}
+alert(question);

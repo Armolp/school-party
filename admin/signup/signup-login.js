@@ -1,3 +1,5 @@
+Parse.initialize("AK26J8RDJqlwxb2wewzz4sE7dpvYJOdVstu7v6be", "RrkuVkdBBws0vADmr1kb8SkGGu1aZm49g9qsUJiX");
+
 function register() {
 
   var user = new Parse.User();

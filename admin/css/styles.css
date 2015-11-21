@@ -1,0 +1,57 @@
+body {
+  background: #EFEFEF;
+  text-align: center;
+  padding: 0 25px;
+}
+label {
+  color: #474747;
+  display: table;
+}
+.panel {
+  background-color: #FFF;
+  border: solid 1px #DEDEDE;
+  padding: 40px 0;
+}
+#signup {
+  border: none;
+  color:#5A9CCE;
+}
+#sesion{
+  background-color: #1ABC9C;
+  border-color: #1ABC9C;
+}
+
+#signup:hover{
+  background-color: #FFF;
+  color: #518DBB;
+}
+
+#main {
+  width: 500px;
+  margin: auto;
+  text-align: left;
+  background: white;
+  padding: 50px 60px;
+  border: solid #ddd;
+  border-width: 0 1px 1px 1px;
+}
+#main h1 {
+  margin-top: 0;
+  font-size: 35px;
+}
+#main ul {
+  padding-left: 20px;
+}
+#main .error {
+  border: 1px solid red;
+  background: #FDEFF0;
+  padding: 20px;
+}
+#main .success {
+  margin-top: 25px;
+}
+#main .success code {
+  font-size: 12px;
+  color: green;
+  line-height: 13px;
+}

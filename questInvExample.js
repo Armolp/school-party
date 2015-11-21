@@ -3,6 +3,7 @@ var myGame = new Kiwi.Game();
 var myState = new Kiwi.State('myState');
 
 myState.create = function(){
+
 	Kiwi.State.prototype.create.call(this);
 
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures['background'], 0, 0);
