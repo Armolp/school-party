@@ -24,10 +24,6 @@ teacherRoomState.create = function() {
 
     this.character.animation.play( "idleright" );
 
-    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'mainTheme', 1, true );
-
-    this.backgroundMusic.play();
-
     this.addChild( this.background );
     this.addChild( this.character );
 };

@@ -79,9 +79,7 @@ mainMenuState.create = function(){
     this.menu.getMenuItem(2).input.onDown.add( this.instructionsButton, this );
     this.menu.getMenuItem(3).input.onDown.add( this.creditsButton, this );
 
-    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'mainTheme', 1, true );
-
-    this.backgroundMusic.play();
+    
 
     this.addChild(this.background);
     //this.addChild(this.textField);

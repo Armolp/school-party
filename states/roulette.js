@@ -113,7 +113,7 @@ rouletteState.update = function(){
 rouletteState.swchSpin = function () {
 	//start moving the roulette and use a random number to choose a minigame
     this.step = 2*Math.PI;
-    //this.rnd = Math.floor(Math.random()*40) + 50;
-    this.rnd = 22;
+    this.rnd = Math.floor(Math.random()*40) + 50;
+    //this.rnd = 22;
     this.textField.text = "Que te tocara esta vez?";
 }
