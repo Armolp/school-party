@@ -1,6 +1,5 @@
-/*
-* Space 
-*/
+
+
 
 var PlayState = new Kiwi.State( "PlayState" );
 
@@ -9,8 +8,7 @@ PlayState.create = function () {
     this.height = game.stage.height;
     this.mouse = this.game.input.mouse;
     this.speed = 3;
-    this.currentlyShooting = false;
-    
+    this.currentlyShooting = false;    
 
     // Particle Effect Creation
     this.backgroundStars = new Kiwi.GameObjects.StatelessParticles(
@@ -25,49 +23,63 @@ PlayState.create = function () {
     // Nave 1
      this.Nave = new Kiwi.GameObjects.Sprite(
         this, this.textures.Nave, 200, 350, true );
-     this.Nave.x=this.width/2-this.Nave.width/2;    
+     this.Nave.x=this.width/2-this.Nave.width/2; 
+     this.Nave.transform.scaleX=0.75;
+     this.Nave.transform.scaleY=0.75;   
     //Enemigos correcto
      this.Enemigos = new Kiwi.GameObjects.Sprite(
-        this, this.textures.enemigos, this.width/2-470, this.height/2-450, true);
-    this.Enemigos.transform.scaleX=0.19;
-     this.Enemigos.transform.scaleY=0.19;
+        this, this.textures.enemigos, this.width/2-470, this.height/2-380, true);
+    this.Enemigos.transform.scaleX=0.15;
+     this.Enemigos.transform.scaleY=0.15;
     //Enemigo Incorecto 1
      this.Enemigos1 = new Kiwi.GameObjects.Sprite(
-        this, this.textures.enemigos, this.width/2-750 , this.height/2-450, true);
-         this.Enemigos1.transform.scaleX=0.19;
-     this.Enemigos1.transform.scaleY=0.19;
+        this, this.textures.enemigos, this.width/2-750 , this.height/2-350, true);
+         this.Enemigos1.transform.scaleX=0.15;
+     this.Enemigos1.transform.scaleY=0.15;
     
     //Enemigo Incorrecto 2
      this.Enemigos2 = new Kiwi.GameObjects.Sprite(
-        this, this.textures.enemigos, this.width/2-190 , this.height/2-450, true);
-      this.Enemigos2.transform.scaleX=0.19;
-     this.Enemigos2.transform.scaleY=0.19;
+        this, this.textures.enemigos, this.width/2-190 , this.height/2-350, true);
+      this.Enemigos2.transform.scaleX=0.15;
+     this.Enemigos2.transform.scaleY=0.15;
    
     //laser
     this.laser= new Kiwi.GameObjects.Sprite(
-        this, this.textures.Laser, this.width/2, this.height/2,false);
+        this, this.textures.Laser, 0, 0,false);
     this.laser.visible=false;
     
     //Explosion
-     this.exp = new Kiwi.GameObjects.Sprite(this, this.textures.Exp, 275, 150);
-     this.exp.animation.add( 'exp', [ 1, 2, 3, 4, 5, 6 ], 0.1, false, true);
-     this.exp.visible=false;
+     this.exp = new Kiwi.GameObjects.Sprite(this, this.textures.Exp, 275, this.Enemigos.y+this.Enemigos.height/3);
+     this.exp.animation.add( 'exp', [1, 2, 3, 4, 5,6,7,8], 0.1,true,true);
+     this.exp.visible=true;
+    
+     
+
     // movimiento 
-    this.leftKey = this.game.input.keyboard.addKey( Kiwi.Input.Keycodes.A );
+    this.leftKey = this.game.input.keyboard.addKey( Kiwi.Input.Keycodes.S);
     this.rightKey = this.game.input.keyboard.addKey( Kiwi.Input.Keycodes.D );
     this.midKey = this.game.input.keyboard.addKey (Kiwi.Input.Keycodes.SPACEBAR);
     
+ //Pregunta
+    this.textField0 = new Kiwi.GameObjects.Textfield(this,'2+2');
+    this.textField0.x = this.game.stage.width/2-this.textField0.width/2;
+    this.textField0.y = 10;
+    this.textField0.color = '#FFFFFF';
+    this.textField0.fontFamily = 'Helvetica, sans-serif';
+    this.textField0.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    this.textField0.visible=true;
+
     //Respuesta
-    this.textField = new Kiwi.GameObjects.Textfield(this, 'Respuesta 1');
-    this.textField.x = this.game.stage.width / 2-this.textField.width/2;
-    this.textField.y = this.width/2-275;
+    this.textField = new Kiwi.GameObjects.Textfield(this, '5');
+    this.textField.x = this.game.stage.width / 2-this.textField.width/2-10;
+    this.textField.y = this.width/2-300;
     this.textField.color = '#FFFFFF';
     this.textField.fontFamily = 'Helvetica, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.textField.visible=false;
 
     //Respuesta
-    this.textField1 = new Kiwi.GameObjects.Textfield(this, 'Respuesta 2');
+    this.textField1 = new Kiwi.GameObjects.Textfield(this, '6');
     this.textField1.x = this.game.stage.width / 2-this.textField.width/2-280;
     this.textField1.y = this.width/2-275;
     this.textField1.color = '#FFFFFF';
@@ -76,7 +88,7 @@ PlayState.create = function () {
     this.textField1.visible=false;
 
       //Respuesta
-    this.textField2 = new Kiwi.GameObjects.Textfield(this, 'Respuesta 3');
+    this.textField2 = new Kiwi.GameObjects.Textfield(this, '4');
     this.textField2.x = this.game.stage.width / 2-this.textField.width/2+282;
     this.textField2.y = this.width/2-275;
     this.textField2.color = '#FFFFFF';
@@ -84,7 +96,7 @@ PlayState.create = function () {
     this.textField2.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.textField2.visible=false;
 
-console.log(this.exp.visible ); 
+console.log(this.exp.isPlying ); 
  console.log(this.textField.x + this.textField.width/2 );
     // Display hierarchy
     this.addChild( this.backgroundStars );
@@ -94,6 +106,7 @@ console.log(this.exp.visible );
     this.addChild (this.Enemigos1);
     this.addChild (this.Enemigos2);
     this.addChild(this.textField);
+    this.addChild(this.textField0);
     this.addChild(this.exp);
     this.addChild(this.textField1);
     this.addChild(this.textField2);
@@ -139,24 +152,29 @@ PlayState.update = function () {
 
     this.Enemigos.visible=false;
     this.exp.visible=true;
-    this.exp.animation.play
+    this.exp.play;
+
+   
   }
 
   if (this.laser.box.bounds.intersects(this.Enemigos1.box.bounds))
   {
 
     this.Enemigos1.visible=false;
+   
   }
 
   if (this.laser.box.bounds.intersects(this.Enemigos2.box.bounds))
   {
 
     this.Enemigos2.visible=false;
+  
   }
 
      if ( this.Nave.x >=0 && this.Nave.x<this.Enemigos2.x +this.Enemigos2.width*.19-100)
      {
         this.textField1.visible=true;
+
      }
 
      if (this.Nave.x<this.Enemigos2.x +this.Enemigos2.width*.19-100)
@@ -175,4 +193,5 @@ PlayState.update = function () {
         this.textField2.visible=true;
         this.textField.visible=false;
     }
+
 };
