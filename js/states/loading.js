@@ -28,13 +28,19 @@ LoadingState.preload = function () {
 this.addImage(
     "Laser",
     "assets/img/laser.png" );
-
+//exp
 this.addSpriteSheet(
     "Exp",
     "assets/img/expsp.png",192,207 );
-
+//laser2
+this.addImage(
+ "laser2",
+ "assets/img/lf.png" );
+//ui
+this.addImage(
+"scoreImg",
+"assets/img/puntuacion.png");
 };
-
 LoadingState.create = function() {
 
 	Kiwi.State.prototype.create.call( this );
