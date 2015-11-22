@@ -3,24 +3,29 @@
 <head>
     <meta charset="utf-8">
 	<title>School Party</title>
-	<script type="text/javascript" src="kiwi.min.js"></script>
-	<script type="text/javascript" src="preloader.js"></script>
-	<script type="text/javascript" src="load.js"></script>
+	<script type="text/javascript" src="js/lib/kiwi.min.js"></script>
+	<script src="js/plugins/particlesgl-1.2.0.js"></script>
+	<script src="js/entities/particle-effects.js"></script>
 
-	<script type="text/javascript" src="states/mainMenu.js"></script>
-	<script type="text/javascript" src="states/newChar.js"></script>
-	<script type="text/javascript" src="states/loadGame.js"></script>
-	<script type="text/javascript" src="states/instructions.js"></script>
-	<script type="text/javascript" src="states/credits.js"></script>
+	<script type="text/javascript" src="js/preloader.js"></script>
+	<script type="text/javascript" src="js/load.js"></script>
 
-	<script type="text/javascript" src="states/teacherRoom.js"></script>
-	<script type="text/javascript" src="states/hallway.js"></script>
-	<script type="text/javascript" src="states/roulette.js"></script>
+	<script type="text/javascript" src="js/states/mainMenu.js"></script>
+	<script type="text/javascript" src="js/states/newChar.js"></script>
+	<script type="text/javascript" src="js/states/loadGame.js"></script>
+	<script type="text/javascript" src="js/states/instructions.js"></script>
+	<script type="text/javascript" src="js/states/credits.js"></script>
+
+	<script type="text/javascript" src="js/states/teacherRoom.js"></script>
+	<script type="text/javascript" src="js/states/hallway.js"></script>
+	<script type="text/javascript" src="js/states/roulette.js"></script>
 	
-	<script type="text/javascript" src="states/timelineGame.js"></script>
-    <script type="text/javascript" src="states/catch-game.js"></script>
-    <script type="text/javascript" src="states/miniGameMaze.js"></script>
-	<script src="main.js"></script>
+	<script type="text/javascript" src="js/states/timelineGame.js"></script>
+    <script type="text/javascript" src="js/states/catch-game.js"></script>
+    <script type="text/javascript" src="js/states/miniGameMaze.js"></script>
+    <script type="text/javascript" src="js/states/spaceGame.js"></script>
+
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 	
@@ -28,38 +33,7 @@
 		#content{
 			margin: 0 auto;
 		}
-		#inputs{
-			position: absolute;
-			margin: 0 auto;
-		}
-		.loginForm{
-			position: relative;
-			margin: 0 auto;
-			width: 200px;
-			z-index: 10;
-		}
 	</style>
 
-	<script type="text/template" id="signupTemplate">
-		<form class="signupForm">
-			<input type="checkbox" id="signupGender"></input>
-			<input type="text" id="signupUsername" placeholder="Username" />
-			<input type="password" id="signupPassword" placeholder="Create a Password" />
-			<button>Sign Up</button>
-		</form>
-    </script>
-
-    <script type="text/template" id="loginTemplate">
-		<form class="loginForm">
-			<input type="text" id="loginUsername" placeholder="Username" />
-			<input type="password" id="loginPassword" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
-    </script>
-
-    <div id="inputs"></div>
-
-</head>
-<body>
 </body>
 </html>

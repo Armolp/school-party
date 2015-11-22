@@ -21,29 +21,47 @@ loadState.preload = function() {
 
 	this.tweenIn.start();
 
+	//backgrounds
 	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
 	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
+	this.addImage( "background", 			"assets/jungle.png" );
 
+	//temporal images
 	this.addImage( "newCharImg", 			"assets/newChar.png" );
 	this.addImage( "saveCharImg", 			"assets/saveChar.png" );
 	this.addImage( "instructionsImg", 		"assets/instructions.png" );
 	this.addImage( "creditsImg", 			"assets/credits.png" );
 
+	//school images
 	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
 	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
 	this.addImage( "rouletteImg",			"assets/ruleta.png" );
 	this.addImage( "rouletteBGImg",			"assets/rouletteBG.png" );
 
+	//timeline images
 	this.addImage( "squareImg", 			"assets/red square.png" );
-	this.addImage( "background", 			"assets/jungle.png" );
+	
+	//maze images
 	this.addImage( "mazeCharImg", 			"assets/mazeChar.png" );
 	this.addImage( "mazeGoalImg", 			"assets/mazeGoal.png" );
 	this.addImage( "scoreImg", 				"assets/puntuacion.png" );
 	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles2.png", 36, 36 );
+	
+	//space images
+	this.addImage( "Nave", 					"assets/Naveesp.png" );
+	this.addImage( "enemigos", 				"assets/ENE.png" );
+	this.addImage( "particle",				"assets/particle_01.png" );
+	this.addImage( "Laser",					"assets/laser.png" );
+	this.addImage( "laser2",				"assets/lf.png" );
+	this.addImage( "scoreImg",				"assets/puntuacion.png");
+	this.addSpriteSheet( "Exp",				"assets/expsp.png",192,207 );
 
+	//character sprites
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
-	this.addAudio("mainTheme", 				"assets/Enchanted-Valley.wav" );
+	
+	//music
+	this.addAudio( "mainTheme", 			"assets/Enchanted-Valley.wav" );
 };
 
 loadState.create = function(){
@@ -69,5 +87,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mainMenuState" );
+	this.game.states.switchState( "spaceGameState" );
 };
