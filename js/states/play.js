@@ -114,7 +114,7 @@ this.bandera=false;
  this.timer = this.game.time.clock.createTimer('time', 2, 60, true);
  this.timer.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_START, this.onTimerStart, this );
  this.timer.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_COUNT, this.onTimerCount, this );
- this.timerCount = 120;
+ this.timerCount = 3600;
 
  //score 
    
