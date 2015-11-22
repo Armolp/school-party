@@ -39,7 +39,8 @@ loadState.preload = function() {
 	this.addImage( "background", 			"assets/jungle.png" );
 	this.addImage( "mazeCharImg", 			"assets/mazeChar.png" );
 	this.addImage( "mazeGoalImg", 			"assets/mazeGoal.png" );
-	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles.png", 36, 36 );
+	this.addImage( "scoreImg", 				"assets/puntuacion.png" );
+	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles2.png", 36, 36 );
 
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
 	this.addAudio("mainTheme", 				"assets/Enchanted-Valley.wav" );
