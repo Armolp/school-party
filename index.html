@@ -28,7 +28,37 @@
 		#content{
 			margin: 0 auto;
 		}
+		#inputs{
+			position: absolute;
+			margin: 0 auto;
+		}
+		.loginForm{
+			position: relative;
+			margin: 0 auto;
+			width: 200px;
+			z-index: 10;
+		}
 	</style>
+
+	<script type="text/template" id="signupTemplate">
+		<form class="signupForm">
+			<input type="checkbox" id="signupGender"></input>
+			<input type="text" id="signupUsername" placeholder="Username" />
+			<input type="password" id="signupPassword" placeholder="Create a Password" />
+			<button>Sign Up</button>
+		</form>
+    </script>
+
+    <script type="text/template" id="loginTemplate">
+		<form class="loginForm">
+			<input type="text" id="loginUsername" placeholder="Username" />
+			<input type="password" id="loginPassword" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+    </script>
+
+    <div id="inputs"></div>
+
 </head>
 <body>
 </body>

@@ -34,7 +34,7 @@ mazeGameState.create = function(){
     //a history of the failed attempts to answer the question
     this.hty = [];
 
-    //in this minigame tme maximum score you can get is  
+    //in this minigame tme maximum score you can get is  30 and the minimum is 10
     this.score = 30;
 
 	this.game.stage.color = "a3a949";
@@ -44,6 +44,7 @@ mazeGameState.create = function(){
     this.rightKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D );
     this.downKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.S );
     this.upKey      = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
+    this.sKey       = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.SPACEBAR );
 
     //declare mouse input
     this.mouse = this.game.input.mouse;
@@ -115,9 +116,6 @@ mazeGameState.create = function(){
     cell.walls = cell.walls[0]+"d"+cell.walls[2]+cell.walls[3];
     cell.animation.play(cell.walls);
 
-    //this.charX = rnd;
-    //this.charY = 11;
-
     this.character = new Kiwi.GameObjects.StaticImage( this, this.textures.mazeCharImg, this.offsetX, this.offsetY);
 
     this.textField = new Kiwi.GameObjects.Textfield(this, this.question);
@@ -127,15 +125,14 @@ mazeGameState.create = function(){
     this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
-	
     this.scoreP = new Kiwi.GameObjects.Textfield(this, "Puntos: "+this.score);
-    this.scoreP.x = this.game.stage.width;
+    this.scoreP.x = this.game.stage.width - 10;
     this.scoreP.y = 10;
     this.scoreP.color = '#FFFFFF';
     this.scoreP.fontFamily = 'Verdana, sans-serif';
     this.scoreP.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_RIGHT;
     
-    ///Final 
+    //CREATE END GAME SUMMARY
     this.scoreUI = new Kiwi.GameObjects.StaticImage(this, this.textures.scoreImg, 184, 106);
     this.scoreUI.alpha = 0.95;
     this.scoreUI.visible = false;
@@ -160,7 +157,7 @@ mazeGameState.create = function(){
     this.scoreUITextField2.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.scoreUITextField2.visible = false;
 
-    this.scoreUITextField3 = new Kiwi.GameObjects.Textfield(this, "Presiona cualquier tecla\npara continuar");
+    this.scoreUITextField3 = new Kiwi.GameObjects.Textfield(this, "Presiona la barra espaciadora para continuar");
     this.scoreUITextField3.x = this.game.stage.width / 2;
     this.scoreUITextField3.y = 350;
     this.scoreUITextField3.fontSize = 15;
@@ -291,7 +288,7 @@ mazeGameState.update = function(){
 	}
 
 	if(this.textField.text == "Correcto") {
-		if(this.upKey.isDown || this.downKey.isDown || this.leftKey.isDown || this.rightKey.isDown || this.mouse.isDown) {
+		if(this.sKey.isDown) {
     		this.game.states.switchState( "teacherRoomState" );
 		}
 	}

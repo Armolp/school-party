@@ -44,8 +44,10 @@ newCharState.create = function(){
     this.bttnBack.style.backgroundColor = '#9c0';
 
     this.menu = new Kiwi.HUD.Widget.Menu( this.game, this.game.stage.width/2, this.game.stage.height-50 );
+
     this.menu.addMenuItem( this.bttnDone );
     this.menu.addMenuItem( this.bttnBack );
+    
     this.game.huds.defaultHUD.addWidget( this.menu );
     
     this.menu.getMenuItem(0).input.onDown.add( this.done, this );

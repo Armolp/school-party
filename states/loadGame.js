@@ -6,6 +6,9 @@ loadGameState.create = function(){
 
 	this.game.stage.color = "4488cc";
 
+    document.getElementById("inputs").innerHTML = document.getElementById("loginTemplate").innerHTML;
+
+
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.backgroundWood, 0, 0);
     this.tempSave1 = new Kiwi.GameObjects.StaticImage(
             this, this.textures.saveCharImg, 30, 50);
@@ -54,9 +57,9 @@ loadGameState.create = function(){
     this.menu.getMenuItem(1).input.onDown.add( this.back, this );
 
     //this.addChild(this.background);
+    //this.addChild(this.tempSave1);
+    //this.addChild(this.tempSave2);
     this.addChild(this.textField);
-    this.addChild(this.tempSave1);
-    this.addChild(this.tempSave2);
 };
 
 loadGameState.update = function(){

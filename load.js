@@ -69,5 +69,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mazeGameState" );
+	this.game.states.switchState( "mainMenuState" );
 };
