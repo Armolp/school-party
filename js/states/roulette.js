@@ -91,7 +91,7 @@ rouletteState.update = function(){
 				this.game.states.switchState( "spaceGameState" );
         	}
         	else if(c == 3) {
-    			clearMenu(this.menu);
+    			//clearMenu(this.menu);
 				this.game.states.switchState( "pairGameState" );
         	}
         	else if(c == 4) {
