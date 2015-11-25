@@ -25,7 +25,7 @@ loadGameState.create = function(){
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
     // Adds a menu widget to the defaultHUD of the game.
-    this.bttnDone = new Kiwi.HUD.Widget.MenuItem( this.game, 'Done', 20, 0 );
+    this.bttnDone = new Kiwi.HUD.Widget.MenuItem( this.game, 'Iniciar', 20, 0 );
     this.bttnDone.style.color = 'white';
     this.bttnDone.style.fontFamily = 'Verdana,sans-serif';
     this.bttnDone.style.display = 'block';
@@ -36,7 +36,7 @@ loadGameState.create = function(){
     this.bttnDone.style.padding = '0.5em 1em';
     this.bttnDone.style.backgroundColor = '#9c0';
 
-    this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Back', -2*menuW-20, 0 );
+    this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -2*menuW-20, 0 );
     this.bttnBack.style.color = 'white';
     this.bttnBack.style.fontFamily = 'Verdana,sans-serif';
     this.bttnBack.style.display = 'block';

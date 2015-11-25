@@ -33,7 +33,7 @@ mainMenuState.create = function(){
     this.bttnNew.style.border = "solid 2px rgb(255,226,130)";
     */
 
-    this.bttnLoad = new Kiwi.HUD.Widget.MenuItem( this.game, 'Load Game', -menuW, 20 );
+    this.bttnLoad = new Kiwi.HUD.Widget.MenuItem( this.game, 'Cargar Juego', -menuW, 20 );
     this.bttnLoad.style.color = 'rgb(255,226,130)';
     this.bttnLoad.style.fontFamily = 'Verdana,sans-serif';
     this.bttnLoad.style.display = 'block';
@@ -45,7 +45,7 @@ mainMenuState.create = function(){
     this.bttnLoad.style.backgroundColor = 'transparent';
     this.bttnLoad.style.border = "solid 2px rgb(255,226,130)";
 
-    this.bttnInstructions = new Kiwi.HUD.Widget.MenuItem( this.game, 'Instructions', -menuW, 110 );
+    this.bttnInstructions = new Kiwi.HUD.Widget.MenuItem( this.game, 'Instrucciones', -menuW, 110 );
     this.bttnInstructions.style.color = 'rgb(255,226,130)';
     this.bttnInstructions.style.fontFamily = 'Verdana,sans-serif';
     this.bttnInstructions.style.display = 'block';
@@ -57,7 +57,7 @@ mainMenuState.create = function(){
     this.bttnInstructions.style.backgroundColor = 'transparent';
     this.bttnInstructions.style.border = "solid 2px rgb(255,226,130)";
 
-    this.bttnCredits = new Kiwi.HUD.Widget.MenuItem( this.game, 'Credits', -menuW, 200 );
+    this.bttnCredits = new Kiwi.HUD.Widget.MenuItem( this.game, 'Creditos', -menuW, 200 );
     this.bttnCredits.style.color = 'rgb(255,226,130)';
     this.bttnCredits.style.fontFamily = 'Verdana,sans-serif';
     this.bttnCredits.style.display = 'block';

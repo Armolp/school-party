@@ -14,7 +14,7 @@ instructionsState.create = function(){
     var menuW = 100;
     
     //declare a text field
-    this.textField = new Kiwi.GameObjects.Textfield(this, 'Temporary Instructions Header');
+    this.textField = new Kiwi.GameObjects.Textfield(this, 'Instrucciones de uso');
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 10;
     this.textField.color = '#FFFFFF';
@@ -22,7 +22,7 @@ instructionsState.create = function(){
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
     // Adds a menu widget to the defaultHUD of the game.
-    this.bttnNew = new Kiwi.HUD.Widget.MenuItem( this.game, 'Back', -menuW, 0 );
+    this.bttnNew = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -menuW, 0 );
     this.bttnNew.style.color = 'white';
     this.bttnNew.style.fontFamily = 'Verdana,sans-serif';
     this.bttnNew.style.display = 'block';

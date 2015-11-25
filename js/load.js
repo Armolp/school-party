@@ -22,53 +22,61 @@ loadState.preload = function() {
 	this.tweenIn.start();
 
 	//backgrounds
-	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
-	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
-	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
 	this.addImage( "background", 			"assets/jungle.png" );
+	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
+	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
+	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
 
 	//temporal images
+	this.addImage( "creditsImg", 			"assets/credits.png" );
 	this.addImage( "newCharImg", 			"assets/newChar.png" );
 	this.addImage( "saveCharImg", 			"assets/saveChar.png" );
 	this.addImage( "instructionsImg", 		"assets/instructions.png" );
-	this.addImage( "creditsImg", 			"assets/credits.png" );
 
 	//school images
-	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
-	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
 	this.addImage( "rouletteImg",			"assets/ruleta.png" );
+	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
 	this.addImage( "rouletteBGImg",			"assets/rouletteBG.png" );
+	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
+
+	this.addImage( "scoreImg",				"assets/puntuacion.png");
 
 	//timeline images
 	this.addImage( "squareImg", 			"assets/red square.png" );
 	
 	//maze images
-	this.addImage( "mazeCharImg", 			"assets/mazeChar.png" );
-	this.addImage( "mazeGoalImg", 			"assets/mazeGoal.png" );
-	this.addImage( "scoreImg", 				"assets/puntuacion.png" );
-	this.addSpriteSheet( "mazeSprite", 		"assets/mazeTiles2.png", 36, 36 );
+	this.addImage( "mazeCharImg", 			"assets/maze/mazeChar.png" );
+	this.addImage( "mazeGoalImg", 			"assets/maze/mazeGoal.png" );
+	this.addSpriteSheet( "mazeSprite", 		"assets/maze/mazeTiles2.png", 36, 36 );
 	
 	//space images
-	this.addImage( "Nave", 					"assets/Naveesp.png" );
-	this.addImage( "enemigos", 				"assets/ENE.png" );
-	this.addImage( "particle",				"assets/particle_01.png" );
-	this.addImage( "Laser",					"assets/laser.png" );
-	this.addImage( "laser2",				"assets/lf.png" );
-	this.addImage( "scoreImg",				"assets/puntuacion.png");
-	this.addSpriteSheet( "Exp",				"assets/expsp.png",192,207 );
+	this.addImage( "laser2",				"assets/space/lf.png" );
+	this.addImage( "enemigos", 				"assets/space/ENE.png" );
+	this.addImage( "Laser",					"assets/space/laser.png" );
+	this.addImage( "Nave", 					"assets/space/Naveesp.png" );
+	this.addImage( "particle",				"assets/space/particle_01.png" );
+	this.addSpriteSheet( "Exp",				"assets/space/expsp.png",192,207 );
+
+	//catch images
+    this.addImage('quest', 					'assets/catch/quest.png');
+	this.addImage('backgroundCatch', 		'assets/catch/western.png'); 
+    this.addSpriteSheet('coin', 			'assets/catch/coin.png', 48, 48);
+    this.addSpriteSheet('cowboy', 			'assets/catch/cowboy.png', 150,99);
+    this.addSpriteSheet('sparkle', 			'assets/catch/sparkle.png', 34, 40);
+    this.addSpriteSheet('coinsack', 		'assets/catch/coinsack.png', 48, 48);
 
 	//character sprites
+	this.addSpriteSheet( "susySprite", 		"assets/susy.png", 100, 149 );
+	this.addSpriteSheet( "danielSprite", 	"assets/daniel.png", 68, 129 );
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
-	this.addSpriteSheet( "susySprite", "assets/susy.png", 100, 149 );
-	this.addSpriteSheet( "danielSprite", "assets/daniel.png", 68, 129 );
 	
 	//music
-	this.addAudio( "mainTheme", 			"assets/Enchanted-Valley.wav" );
-	this.addAudio( "mazeTheme", 			"assets/Kawai Kitsune.mp3" );
-	this.addAudio( "timeTheme", 			"assets/Pixelland.mp3" );
-	this.addAudio( "catchTheme", 			"assets/Kings of Tara.mp3" );
-	this.addAudio( "pairTheme", 			"assets/Pamgaea.mp3" );
-	this.addAudio( "spaceTheme", 			"assets/Video Dungeon Boss.mp3" );
+	this.addAudio( "pairTheme", 			"assets/music/Pamgaea.mp3" );
+	this.addAudio( "timeTheme", 			"assets/music/Pixelland.mp3" );
+	this.addAudio( "mazeTheme", 			"assets/music/Kawai Kitsune.mp3" );
+	this.addAudio( "catchTheme", 			"assets/music/Kings of Tara.mp3" );
+	this.addAudio( "mainTheme", 			"assets/music/Enchanted-Valley.wav" );
+	this.addAudio( "spaceTheme", 			"assets/music/Video Dungeon Boss.mp3" );
 };
 
 loadState.create = function(){
@@ -93,5 +101,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "loadGameState" );
+	this.game.states.switchState( "catchGameState" );
 };

@@ -22,7 +22,7 @@ creditsState.create = function(){
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
   
     // Adds a menu widget to the defaultHUD of the game.
-    this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Back', -menuW, 0);
+    this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -menuW, 0);
     this.bttnBack.style.color = 'white';
     this.bttnBack.style.fontFamily = 'Verdana,sans-serif';
     this.bttnBack.style.display = 'block';
