@@ -2,170 +2,317 @@ var myGame = new Kiwi.Game();
 
 var myState = new Kiwi.State( "myState" );
 
-var loadingState = new Kiwi.State( "loadingState" );
+/*Se cargan las imagenes que se van a utilizar:
+ el fondo, la carta boca-abajo, la carta boca-arriba*/
 
-var preloader = new Kiwi.State( "preloader" );
+myState.preload = function () {
 
+    Kiwi.State.prototype.preload.call(this);
 
-myState.preload = function() {
+    this.addImage( "carta1", "carta1.png");
+    this.addImage( "carta2", "carta2.png");
+    this.addImage( "background", "wood-background.png" );
+}
 
-	Kiwi.State.prototype.preload.call(this);
-
-};
-
+/*Se crean y se inicializan todas las variables que 
+se van a utilizar durante el juego*/
 
 myState.create = function(){
+	
+    
+    Kiwi.State.prototype.create.call( this );
 
-	this.background = new Kiwi.GameObjects.StaticImage(
-		this, this.textures[ "background" ], 0, 0, true );
-
-	this.character = new Kiwi.GameObjects.Sprite(
-		this, this.textures[ "characterSprite" ], 350, 330, true );
-
-	Kiwi.State.prototype.create.call( this );
-
-	this.leftKey = this.game.input.keyboard.addKey( Kiwi.Input.Keycodes.A );
-	this.rightKey = this.game.input.keyboard.addKey( Kiwi.Input.Keycodes.D );
-	this.downKey = this.game.input.keyboard.addKey( Kiwi.Input.Keycodes.S );
-
-	this.character.animation.add(
-		"idleright", [ 0 ], 0.1, false );
-	this.character.animation.add(
-		"crouchright", [ 1 ], 0.1, false );
-	this.character.animation.add(
-		"moveright", [ 2, 3, 4, 5, 6, 7 ], 0.1, true );
-	this.character.animation.add(
-		"idleleft", [ 8 ], 0.1, false );
-	this.character.animation.add(
-		"crouchleft", [ 9 ], 0.1, false );
-	this.character.animation.add(
-		"moveleft", [ 15, 14, 13, 12, 11, 10 ], 0.1, true );
-
-	this.facing = "right";
-	this.character.animation.play( "idleright" );
-
-	this.addChild(this.background);
-	this.addChild(this.character);
-};
+    this.preguntas = [];                                    // arreglo que contiene las preguntas y luego las respuestas del momorama
+    this.texto = [];                                        // arreglo donde se guardaran las preguntas en el orden de las cartas
+    this.respuestas = [];                                   // arreglo que contiene las parejas equivalentes de las cartas
+    this.gameOver = [];                                     // arreglo que contiene las cartas que ya fueron seleccionadas correctamente
+    this.iCont = 0;                                         // contador para saber cuantas cartas se han seleccionado por turno
+    this.par1 = 0;                                          // posicion de la primera carta seleccionada
+    this.par2 = 0;                                          // posicion de la segunda carta seleccionada
+    this.par = [];                                          // arreglo que guardas posiciones para luego dar valor a las variables anteriores
+    this.cont = 0;                                          // contados para ajustar el orden la las respuestas con los textos que se despliegan
+    this.mouse = this.game.input.mouse;                     // se define la variable que toma el input del mouse        
+    this.bool = false;                                      // variable que dice si ya se seleccionaron las 2 cartas
+    this.score = 30;                                        // puntos extra que se pueden ganar inicialmente al pasar el juego en menor turnos
+    this.done = true;                                       // dice si ya se acabo el juego
 
 
-myState.update = function() {
+    // se declaran las imagenes
+    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.background, 0, 0 );
+    this.carta1Group = new Kiwi.Group( this ); 
+    this.carta2Group = new Kiwi.Group( this ); 
 
-	Kiwi.State.prototype.update.call( this );
+    //e declaran los textos que se muestran:
 
-	if (this.downKey.isDown) {
-		if ( this.character.animation.currentAnimation.name !==
-				( "crouch" + this.facing ) ) {
-			this.character.animation.play( "crouch" + this.facing );
-		}
+    // texto de la primera carta seleccionada
+    this.textField = new Kiwi.GameObjects.Textfield(this, '');
+    this.textField.x = 100; 
+    this.textField.y = 10; 
+    this.textField.color = '#000000'; 
+    this.textField.fontFamily = 'Roboto, sans-serif'; 
 
-	} else if ( this.leftKey.isDown ) {
-		this.facing = "left";
+    // texto de la segunda carta seleccionada
+    this.textField2 = new Kiwi.GameObjects.Textfield(this, '');
+    this.textField2.x = 200; 
+    this.textField2.y = 10; 
+    this.textField2.color = '#000000'; 
+    this.textField2.fontFamily = 'Roboto, sans-serif'; 
 
-		if ( this.character.transform.x > 3 ) {
-			this.character.transform.x-=3;
-		}
+    // texto de los puntos extra
+    this.textField3 = new Kiwi.GameObjects.Textfield(this, '');
+    this.textField3.x = 90; 
+    this.textField3.y = 20; 
+    this.textField3.color = '#000000'; 
+    this.textField3.fontFamily = 'Roboto, sans-serif';
 
-		if ( this.character.animation.currentAnimation.name !==
-				"moveleft" ) {
-			this.character.animation.play( "moveleft" );
-		}
-
-	} else if ( this.rightKey.isDown ) {
-		this.facing = "right";
-
-		if ( this.character.transform.x < 600 ) {
-			this.character.transform.x += 3;
-		}
-
-		if ( this.character.animation.currentAnimation.name !==
-			"moveright" ) {
-			this.character.animation.play("moveright");
-		}
-
-	} else if (this.character.animation.currentAnimation.name !==
-			"idle" + this.facing) {
-		this.character.animation.play( "idle" + this.facing );
-	}
-};
+    // se agregan los objetos al estado
+    this.addChild( this.background ); 
+    this.addChild(this.carta1Group); 
+    this.addChild(this.carta2Group); 
+    this.addChild(this.textField);
+    this.addChild(this.textField2);
+    this.addChild(this.textField3);
 
 
-// Loading assets
-preloader.preload = function() {
-
-	Kiwi.State.prototype.preload.call( this );
-
-	this.addImage( "loadingImage", "loadingImage.png", true );
-};
 
 
-preloader.create = function() {
+    // se agregan las 18 cartas del tablero a sus grupos
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 90, 100 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 190, 100 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 290, 100 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 390, 100 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 490, 100 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 590, 100 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 90, 210 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 190, 210 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 290, 210 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 390, 210 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 490, 210 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 590, 210 ) );
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 90, 320 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 190, 320 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 290, 320 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 390, 320 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 490, 320 ) ); 
+    this.carta1Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta1" ], 590, 320 ) );  
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 90, 100 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 190, 100 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 290, 100 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 390, 100 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 490, 100 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 590, 100 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 90, 210 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 190, 210 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 290, 210 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 390, 210 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 490, 210 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 590, 210 ) );
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 90, 320 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 190, 320 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 290, 320 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 390, 320 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 490, 320 ) ); 
+    this.carta2Group.addChild( new Kiwi.GameObjects.Sprite( this, this.textures[ "carta2" ], 590, 320 ) );  
 
-	Kiwi.State.prototype.create.call( this );
+    carta2visible = this.carta2Group.members; 
+    carta1visible = this.carta1Group.members; 
 
-	this.game.states.switchState( "loadingState" );
-};
+    //se quita la visibilidad de las cartas volteadas
+    carta2visible[ 0 ].visible = false; 
+    carta2visible[ 1 ].visible = false; 
+    carta2visible[ 2 ].visible = false; 
+    carta2visible[ 3 ].visible = false; 
+    carta2visible[ 4 ].visible = false; 
+    carta2visible[ 5 ].visible = false; 
+    carta2visible[ 6 ].visible = false; 
+    carta2visible[ 7 ].visible = false; 
+    carta2visible[ 8 ].visible = false; 
+    carta2visible[ 9 ].visible = false; 
+    carta2visible[ 10 ].visible = false; 
+    carta2visible[ 11 ].visible = false; 
+    carta2visible[ 12 ].visible = false; 
+    carta2visible[ 13 ].visible = false; 
+    carta2visible[ 14 ].visible = false; 
+    carta2visible[ 15 ].visible = false; 
+    carta2visible[ 16 ].visible = false; 
+    carta2visible[ 17 ].visible = false; 
+
+    //se ponen las preguntas y respuestas
+    this.preguntas[0] = 'A';
+    this.preguntas[1] = 'B';
+    this.preguntas[2] = 'C';
+    this.preguntas[3] = 'D';
+    this.preguntas[4] = 'E';
+    this.preguntas[5] = 'F';
+    this.preguntas[6] = 'G';
+    this.preguntas[7] = 'H';
+    this.preguntas[8] = 'I';
+    this.preguntas[9] = '1';
+    this.preguntas[10] = '2';
+    this.preguntas[11] = '3';
+    this.preguntas[12] = '4';
+    this.preguntas[13] = '5';
+    this.preguntas[14] = '6';
+    this.preguntas[15] = '7';
+    this.preguntas[16] = '8';
+    this.preguntas[17] = '9';
 
 
-loadingState.preload = function() {
-
-	Kiwi.State.prototype.preload.call( this );
-
-	this.game.states.rebuildLibraries();
-
-	this.game.stage.color = "#E0EDF1";
-
-	this.logo = new Kiwi.GameObjects.StaticImage(
-		this, this.textures[ "loadingImage" ], 150, 50 );
-
-	this.addChild(this.logo);
-
-	this.logo.alpha = 0;
-
-	this.tweenIn = this.game.tweens.create( this.logo );
-
-	this.tweenIn.to(
-		{ alpha: 1 }, 1000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
-
-	this.tweenIn.start();
-
-	// Assets to load
-	this.addSpriteSheet( "characterSprite", "character.png", 150, 117 );
-	this.addImage( "background", "jungle.png" );
-};
 
 
-loadingState.update = function(){
 
+    // se declara que ningun par ha sido encontrado
+    for(var i=0; i<18; i++)
+    {
+        this.gameOver[i] = true;
+    }
+
+    // se inicializa el arreglo con las parejas
+    for(var i = 0; i < 9 ; i++){
+        this.respuestas[i] = i;
+        this.respuestas[i+9] = i;
+    }
+
+    // se revuelve el arreglo
+    this.respuestas.memory_tile_shuffle();
+
+    // se sincronizan las respuestas con los textos
+    for(var i = 0; i<9 ; i++){
+        this.cont = 0;
+        for(var j = 0; j<18 ; j++)
+        {
+            if(this.respuestas[j] == i)
+            {
+                if(this.cont == 0){
+                    this.texto[j] = this.preguntas[i];
+                    this.cont++;
+                }
+                else{
+                    this.texto[j] = this.preguntas[i+9];
+                }
+
+            }
+        }
+    }
+
+}
+
+// se actualiza el juego
+
+myState.update = function(){
 	Kiwi.State.prototype.update.call(this);
 
-};
+    //se declaran los miembros de los grupos de cartas para simplificar la variable 
+    var cartas1 = this.carta1Group.members;                    
+    var cartas2 = this.carta2Group.members; 
+
+    //se escriben los puntos extras que todavia se pueden ganar 
+    this.textField3.text = "Puntos Extra: " + this.score;
+
+    //se inicializa como si el juego ya hubiera terminado
+    this.done = true;
+
+    
+    if(!this.bool){                     //si ya se seleccionaron 2 cartas se espera a que vuelvan a dar click para voltear de nuevo las cartas
+
+        // checa si se selcciona una carta
+         if(this.mouse.isDown){        
+            this.game.input.mouse.reset();
+            for (var j = 0; j < cartas1.length; j++){
+                if (cartas1[j].box.bounds.contains(this.mouse.x, this.mouse.y) &&  carta2visible[ j ].visible == false && carta1visible[ j ].visible == true){
+                        carta2visible[ j ].visible = true; 
+                        if(this.iCont!=0){
+                            this.textField2.text = this.texto[j];
+                            this.textField2.x = 90;
+                            this.textField2.y = 460;
+                            this.textField2.visible = true;
+                        }
+                        else{
+                            this.textField.text = this.texto[j];
+                            this.textField.x = 90;
+                            this.textField.y = 430;
+                            this.textField.visible = true;
+                        }
+                        
+                        this.par[this.iCont] = j;
+                        this.iCont++;
+                }
+            }
+            
+        }
+    }
 
 
-loadingState.create = function() {
+    // checa si las cartas sonn iguales
+    if(this.iCont == 2){
+        this.bool = true;
+        this.par1 = this.par[0];
+        this.par2 = this.par[1];
+        if(this.mouse.isDown){ 
+            this.game.input.mouse.reset();
 
-	Kiwi.State.prototype.create.call( this );
+            // si no son iguales se vuelven a voltear
+        if(this.respuestas[this.par1] != this.respuestas[this.par2]){
+            carta2visible[ this.par1 ].visible = false;
+            carta2visible[ this.par2 ].visible = false;
+            this.textField.visible = false;
+            this.textField2.visible = false;
+            this.score--;
+           
+       }
+            // si son iguales desaparecen
+       else{
+            this.gameOver[this.par1] = false;
+            this.gameOver[this.par2] = false;
+            carta2visible[ this.par1 ].visible = false;
+            carta2visible[ this.par2 ].visible = false;
+            carta1visible[ this.par1 ].visible = false;
+            carta1visible[ this.par2 ].visible = false;
+            this.textField.visible = false;
+            this.textField2.visible = false;
 
-	console.log( "inside create of loadingState" );
+       }
+            this.bool = false;
+            this.iCont = 0;
+   }
+       
 
-	this.tweenOut = this.game.tweens.create( this.logo );
+   }
 
-	this.tweenOut.to(
-		{ alpha: 0 }, 1000, Kiwi.Animations.Tweens.Easing.Linear.None, false );
+   //checa si ya todos los pares fueron encontrados
+   for(var i=0; i<18; i++){
+        if(this.gameOver[i])
+        {
+            this.done = false;
+        }
+   }
 
-	this.tweenOut.onComplete( this.switchToMain, this );
-
-	this.tweenOut.start();
-};
-
-
-loadingState.switchToMain = function() {
-	this.game.states.switchState( "myState" );
-};
+   if(this.done){
+    myGame.states.switchState(NULL);
+   }
 
 
-myGame.states.addState(myState);
-myGame.states.addState(loadingState);
-myGame.states.addState(preloader);
 
-myGame.states.switchState("preloader");
+}
+
+//funcion para revolver el arreglo
+
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+
+
+myGame.states.addState( myState );
+myGame.states.switchState( "myState" );
+
+
+
+
+
+
