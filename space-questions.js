@@ -12,11 +12,14 @@ function getData() {
           success: function(spaceQuestion) {
             // The object was retrieved successfully.
             var question = spaceQuestion.get("question");
+
             var a = spaceQuestion.get("a");
             var b = spaceQuestion.get("b");
             var c = spaceQuestion.get("c");
             var answer = spaceQuestion.get("answer");
-            // console.log(question + "\n" + a + "\n" + b + "\n" + c + "\n" + answer);
+            window.questions = window.questions || [];
+            window.questions.push(question);
+            console.log(question + "\n" + a + "\n" + b + "\n" + c + "\n" + answer);
           },
           error: function(object, error) {
             // The object was not retrieved successfully.
@@ -30,5 +33,3 @@ function getData() {
     }
   });
 }
-
-alert(question);
