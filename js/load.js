@@ -62,6 +62,11 @@ loadState.preload = function() {
 	
 	//music
 	this.addAudio( "mainTheme", 			"assets/Enchanted-Valley.wav" );
+	this.addAudio( "mazeTheme", 			"assets/Kawai Kitsune.mp3" );
+	this.addAudio( "timeTheme", 			"assets/Pixelland.mp3" );
+	this.addAudio( "catchTheme", 			"assets/Kings of Tara.mp3" );
+	this.addAudio( "pairTheme", 			"assets/Pamgaea.mp3" );
+	this.addAudio( "spaceTheme", 			"assets/Video Dungeon Boss.mp3" );
 };
 
 loadState.create = function(){
@@ -69,7 +74,6 @@ loadState.create = function(){
 	Kiwi.State.prototype.create.call( this );
 
 	this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'mainTheme', 1, true );
-
     this.backgroundMusic.play();
 	
 	console.log( "inside create of loadingState" );
@@ -87,5 +91,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mainMenuState" );
+	this.game.states.switchState( "mazeGameState" );
 };

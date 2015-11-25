@@ -1,5 +1,5 @@
-function clearMenu(menu) {
-	menu.container.parentElement.removeChild(menu.container);
+function clearMenu(element) {
+	element.parentElement.removeChild(element);
 }
 
 var gameOptions = {

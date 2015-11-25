@@ -17,7 +17,7 @@ mazeGameState.create = function(){
     //movement state of the character
     this.moving = true;
     //point the character wants to move to 
-    this.charX = 0;
+    this.charX = 9;
     this.charY = 0;
 
     //QUESTION VARIABLES 
@@ -37,6 +37,12 @@ mazeGameState.create = function(){
     //in this minigame tme maximum score you can get is  30 and the minimum is 10
     this.score = 30;
 
+    //stop old music, declare new music and start it
+    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'mazeTheme', 1, true );
+    loadState.backgroundMusic.stop();
+    this.backgroundMusic.play();
+
+    //put a background color to the stage
 	this.game.stage.color = "a3a949";
 
     //declare keyboard inputs 
@@ -116,7 +122,8 @@ mazeGameState.create = function(){
     cell.walls = cell.walls[0]+"d"+cell.walls[2]+cell.walls[3];
     cell.animation.play(cell.walls);
 
-    this.character = new Kiwi.GameObjects.StaticImage( this, this.textures.mazeCharImg, this.offsetX, this.offsetY);
+    this.character = new Kiwi.GameObjects.StaticImage( this, this.textures.mazeCharImg, 
+        this.charX*36+this.offsetX, this.charY*36+this.offsetY);
 
     this.textField = new Kiwi.GameObjects.Textfield(this, this.question);
     this.textField.x = this.game.stage.width / 2;
@@ -289,6 +296,8 @@ mazeGameState.update = function(){
 
 	if(this.textField.text == "Correcto") {
 		if(this.sKey.isDown) {
+            this.backgroundMusic.stop();
+            loadState.backgroundMusic.play();
     		this.game.states.switchState( "teacherRoomState" );
 		}
 	}

@@ -18,13 +18,13 @@ creditsState.create = function(){
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 10;
     this.textField.color = '#FFFFFF';
-    this.textField.fontFamily = 'Helvetica, sans-serif';
+    this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
   
     // Adds a menu widget to the defaultHUD of the game.
     this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Back', -menuW, 0);
     this.bttnBack.style.color = 'white';
-    this.bttnBack.style.fontFamily = 'Helvetica,sans-serif';
+    this.bttnBack.style.fontFamily = 'Verdana,sans-serif';
     this.bttnBack.style.display = 'block';
     this.bttnBack.style.boxSizing = 'border-box';
     this.bttnBack.style.width = (menuW * 2).toString() + 'px';
@@ -51,6 +51,6 @@ creditsState.update = function(){
 };
 
 creditsState.back = function () {
-    clearMenu(this.menu);
+    clearMenu(this.menu.container);
     this.game.states.switchState( "mainMenuState" );
 }

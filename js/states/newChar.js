@@ -17,13 +17,13 @@ newCharState.create = function(){
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 10;
     this.textField.color = '#FFFFFF';
-    this.textField.fontFamily = 'Helvetica, sans-serif';
+    this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
     // Adds a menu widget to the defaultHUD of the game.
     this.bttnDone = new Kiwi.HUD.Widget.MenuItem( this.game, 'Done', 20, 0 );
     this.bttnDone.style.color = 'white';
-    this.bttnDone.style.fontFamily = 'Helvetica,sans-serif';
+    this.bttnDone.style.fontFamily = 'Verdana,sans-serif';
     this.bttnDone.style.display = 'block';
     this.bttnDone.style.boxSizing = 'border-box';
     this.bttnDone.style.width = (menuW * 2).toString() + 'px';
@@ -34,7 +34,7 @@ newCharState.create = function(){
 
     this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Back', -2*menuW-20, 0 );
     this.bttnBack.style.color = 'white';
-    this.bttnBack.style.fontFamily = 'Helvetica,sans-serif';
+    this.bttnBack.style.fontFamily = 'Verdana,sans-serif';
     this.bttnBack.style.display = 'block';
     this.bttnBack.style.boxSizing = 'border-box';
     this.bttnBack.style.width = (menuW * 2).toString() + 'px';
@@ -65,10 +65,10 @@ newCharState.update = function(){
 };
 
 newCharState.done = function () {
-    clearMenu(this.menu);
+    clearMenu(this.menu.container);
     this.game.states.switchState( "teacherRoomState" );
 }
 newCharState.back = function () {
-    clearMenu(this.menu);
+    clearMenu(this.menu.container);
     this.game.states.switchState( "mainMenuState" );
 }

@@ -26,6 +26,11 @@ timelineGameState.create = function(){
     //declare keyboard inputs
     this.sKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.SPACEBAR );
 
+    //stop old music, declare new music and start it
+    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'timeTheme', 1, true );
+    loadState.backgroundMusic.stop();
+    this.backgroundMusic.play();
+
     //declare a cell group
     this.cellGroup = new Kiwi.Group( this );
 
@@ -136,6 +141,8 @@ timelineGameState.update = function(){
         this.scoreUITextField3.visible = true;
 
         if(this.sKey.isDown) {
+            this.backgroundMusic.stop();
+            loadState.backgroundMusic.play();
             this.game.states.switchState( "teacherRoomState" );
         }
     }

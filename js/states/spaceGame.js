@@ -10,7 +10,12 @@ spaceGameState.create = function () {
     this.speed = 3;
     this.currentlyShooting = false;
 
-    this.game.stage.color = "#000000"; 
+    this.game.stage.color = "#000000";
+
+    //stop old music, declare new music and start it
+    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'spaceTheme', 1, true );
+    loadState.backgroundMusic.stop();
+    this.backgroundMusic.play();
 
     // Particle Effect Creation
     this.backgroundStars = new Kiwi.GameObjects.StatelessParticles(
@@ -73,7 +78,7 @@ spaceGameState.create = function () {
     this.textField0.x = this.game.stage.width/2-this.textField0.width/2;
     this.textField0.y = 10;
     this.textField0.color = '#FFFFFF';
-    this.textField0.fontFamily = 'Helvetica, sans-serif';
+    this.textField0.fontFamily = 'Verdana, sans-serif';
     this.textField0.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.textField0.visible=true;
 
@@ -82,7 +87,7 @@ spaceGameState.create = function () {
     this.textField.x = this.game.stage.width / 2-this.textField.width/2-10;
     this.textField.y = this.width/2-300;
     this.textField.color = '#FFFFFF';
-    this.textField.fontFamily = 'Helvetica, sans-serif';
+    this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.textField.visible=false;
 
@@ -91,7 +96,7 @@ spaceGameState.create = function () {
     this.textField1.x = this.game.stage.width / 2-this.textField.width/2-280;
     this.textField1.y = this.width/2-275;
     this.textField1.color = '#FFFFFF';
-    this.textField1.fontFamily = 'Helvetica, sans-serif';
+    this.textField1.fontFamily = 'Verdana, sans-serif';
     this.textField1.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.textField1.visible=false;
 
@@ -100,7 +105,7 @@ spaceGameState.create = function () {
     this.textField2.x = this.game.stage.width / 2-this.textField.width/2+282;
     this.textField2.y = this.width/2-275;
     this.textField2.color = '#FFFFFF';
-    this.textField2.fontFamily = 'Helvetica, sans-serif';
+    this.textField2.fontFamily = 'Verdana, sans-serif';
     this.textField2.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
     this.textField2.visible=false;
 
@@ -125,7 +130,7 @@ this.scoreT = new Kiwi.GameObjects.Textfield( this, "Puntos"+this.score);
 this.scoreT.x = 70;
 this.scoreT.y = 20;
 this.scoreT.color = '#FFFFFF';
-this.scoreT.fontFamily = 'Helvetica, sans-serif';
+this.scoreT.fontFamily = 'Verdana, sans-serif';
 this.scoreT.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
   
 //declare a text field to display thescore
@@ -387,6 +392,8 @@ if (this.timerCount==0)
   //cambio de stage 
     if (this.midKey.isDown)
   {
+    this.backgroundMusic.stop();
+    loadState.backgroundMusic.play();
    this.game.states.switchState( "teacherRoomState" );
   }
 }

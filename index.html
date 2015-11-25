@@ -16,6 +16,8 @@
 	<script type="text/javascript" src="js/states/instructions.js"></script>
 	<script type="text/javascript" src="js/states/credits.js"></script>
 
+	<script type="text/javascript" src="js/states/select.js"></script>
+
 	<script type="text/javascript" src="js/states/teacherRoom.js"></script>
 	<script type="text/javascript" src="js/states/hallway.js"></script>
 	<script type="text/javascript" src="js/states/roulette.js"></script>
@@ -30,10 +32,47 @@
 <body>
 	
 	<style type="text/css">
-		#content{
-			margin: 0 auto;
+		#content{margin: 0 auto;}
+		#input{
+			position:absolute;
+			z-index: 10;
+			left:50%;
+			top:100px;
+		}
+		.loginForm {
+			position: relative;
+			left:-50%;
+		}
+		input{
+			margin:50px 0;
+			padding:8px 16px;
+			font-family: "verdana";
+		}
+		#loginEnter{
+			position:absolute;
+			width: 200px;
+			height: 37px;
+			top:280px;
+			left:118px;
+			cursor:pointer;
+			border:none;
+			background-color: #99cc00;
+			color:white;
+			font-size: 16px;
 		}
 	</style>
+
+	<!-- &ntilde; -->
+
+	<div id="input"></div>
+
+	<script type="text/template" id="loginTemplate">
+		<form class="loginForm" id="loginForm">
+			<input type="text" id="loginUsername" placeholder="Usuario" /><br>
+			<input type="password" id="loginPassword" placeholder="Contraseña" /><br>
+			<input type="button" id="loginEnter" value="Iniciar" /><br>
+		</form>
+    </script>
 
 </body>
 </html>

@@ -13,7 +13,7 @@ rouletteState.create = function(){
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 10;
     this.textField.color = '#FFFFFF';
-    this.textField.fontFamily = 'Helvetica, sans-serif';
+    this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
     this.ruleta = new Kiwi.GameObjects.StaticImage( this, this.textures.rouletteImg, 184, 46 );
@@ -25,7 +25,7 @@ rouletteState.create = function(){
 
     this.bttnSpin = new Kiwi.HUD.Widget.MenuItem( this.game, 'Girar ruleta', -menuW, 340 );
     this.bttnSpin.style.color = 'white';
-    this.bttnSpin.style.fontFamily = 'Helvetica,sans-serif';
+    this.bttnSpin.style.fontFamily = 'Verdana,sans-serif';
     this.bttnSpin.style.display = 'block';
     this.bttnSpin.style.boxSizing = 'border-box';
     this.bttnSpin.style.width = (menuW * 2).toString() + 'px';
@@ -79,19 +79,19 @@ rouletteState.update = function(){
 
         	//switch to the game state in each case
         	if(c == 0) {
-    			clearMenu(this.menu);
+    			clearMenu(this.menu.container);
 				this.game.states.switchState( "catchGameState" );
         	}
         	else if(c == 1) {
-    			clearMenu(this.menu);
+    			clearMenu(this.menu.container);
 				this.game.states.switchState( "mazeGameState" );
         	}
         	else if(c == 2) {
-    			clearMenu(this.menu);
+    			clearMenu(this.menu.container);
 				this.game.states.switchState( "spaceGameState" );
         	}
         	else if(c == 3) {
-    			//clearMenu(this.menu);
+    			//clearMenu(this.menu.container);
 				this.game.states.switchState( "pairGameState" );
         	}
         	else if(c == 4) {
@@ -100,7 +100,7 @@ rouletteState.update = function(){
 				this.textField.text = this.rnd;
         	}
         	else if(c == 5) {
-    			clearMenu(this.menu);
+    			clearMenu(this.menu.container);
 				this.game.states.switchState( "timelineGameState" );
         	}	
         }
