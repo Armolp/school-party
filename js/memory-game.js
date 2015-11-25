@@ -1,23 +1,24 @@
 var myGame = new Kiwi.Game();
 
-var myState = new Kiwi.State( "myState" );
+var memoryState = new Kiwi.State( "memoryState" );
 
 /*Se cargan las imagenes que se van a utilizar:
  el fondo, la carta boca-abajo, la carta boca-arriba*/
 
-myState.preload = function () {
+memoryState.preload = function () {
 
     Kiwi.State.prototype.preload.call(this);
 
     this.addImage( "carta1", "carta1.png");
     this.addImage( "carta2", "carta2.png");
     this.addImage( "background", "wood-background.png" );
+    this.addImage( "puntuacion", "puntuacion.png");
 }
 
 /*Se crean y se inicializan todas las variables que 
 se van a utilizar durante el juego*/
 
-myState.create = function(){
+memoryState.create = function(){
 	
     
     Kiwi.State.prototype.create.call( this );
@@ -34,13 +35,16 @@ myState.create = function(){
     this.mouse = this.game.input.mouse;                     // se define la variable que toma el input del mouse        
     this.bool = false;                                      // variable que dice si ya se seleccionaron las 2 cartas
     this.score = 30;                                        // puntos extra que se pueden ganar inicialmente al pasar el juego en menor turnos
-    this.done = true;                                       // dice si ya se acabo el juego
+    this.done = false;                                       // dice si ya se acabo el juego
 
 
     // se declaran las imagenes
     this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.background, 0, 0 );
+    this.puntuacion = new Kiwi.GameObjects.StaticImage( this, this.textures.puntuacion, 185, 100 );
     this.carta1Group = new Kiwi.Group( this ); 
     this.carta2Group = new Kiwi.Group( this ); 
+
+    this.puntuacion.alpha = .95;
 
     //e declaran los textos que se muestran:
 
@@ -67,6 +71,7 @@ myState.create = function(){
 
     // se agregan los objetos al estado
     this.addChild( this.background ); 
+    this.addChild( this.puntuacion ); 
     this.addChild(this.carta1Group); 
     this.addChild(this.carta2Group); 
     this.addChild(this.textField);
@@ -136,6 +141,7 @@ myState.create = function(){
     carta2visible[ 15 ].visible = false; 
     carta2visible[ 16 ].visible = false; 
     carta2visible[ 17 ].visible = false; 
+    this.puntuacion.visible = false;
 
     //se ponen las preguntas y respuestas
     this.preguntas[0] = 'A';
@@ -199,8 +205,10 @@ myState.create = function(){
 
 // se actualiza el juego
 
-myState.update = function(){
+memoryState.update = function(){
 	Kiwi.State.prototype.update.call(this);
+
+    if(!this.done){
 
     //se declaran los miembros de los grupos de cartas para simplificar la variable 
     var cartas1 = this.carta1Group.members;                    
@@ -286,9 +294,28 @@ myState.update = function(){
             this.done = false;
         }
    }
-
+}
    if(this.done){
-    myGame.states.switchState(NULL);
+    this.puntuacion.visible = true;
+    this.textField3.x = 330;
+    this.textField3.y = 245;
+    this.textField2.fontSize = 15;
+    this.textField3.fontSize = 15;
+    this.textField3.color = '#FFFFFF';
+    this.textField3.text = "puntuacion: " + (this.score+15);
+    this.textField2.text = "Da click al mouse para continuar."
+    this.textField2.x = 270;
+    this.textField2.y = 340;
+    this.textField2.fontWeight = "bold";
+    this.textField2.color = '#FFFFFF';
+    this.textField2.visible = true;
+
+
+    
+        if(this.mouse.isDown){        
+            this.game.input.mouse.reset();
+            myGame.states.switchState(mainMenuState);
+        }
    }
 
 
@@ -308,8 +335,8 @@ Array.prototype.memory_tile_shuffle = function(){
 }
 
 
-myGame.states.addState( myState );
-myGame.states.switchState( "myState" );
+myGame.states.addState( memoryState );
+myGame.states.switchState( "memoryState" );
 
 
 
