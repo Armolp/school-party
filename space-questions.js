@@ -17,8 +17,13 @@ function getData() {
             var b = spaceQuestion.get("b");
             var c = spaceQuestion.get("c");
             var answer = spaceQuestion.get("answer");
+            var questionObject = {};
+            questionObject.question = question;
+            questionObject.a = a;
+            questionObject.b = b;
+            questionObject.c = c;
             window.questions = window.questions || [];
-            window.questions.push(question);
+            window.questions.push(questionObject);
             console.log(question + "\n" + a + "\n" + b + "\n" + c + "\n" + answer);
           },
           error: function(object, error) {
