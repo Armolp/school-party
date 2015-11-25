@@ -33,3 +33,5 @@ function getData() {
     }
   });
 }
+
+window.onload = getData;
