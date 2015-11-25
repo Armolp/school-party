@@ -59,6 +59,8 @@ loadState.preload = function() {
 
 	//character sprites
 	this.addSpriteSheet( "characterSprite", "assets/character.png", 150, 120 );
+	this.addSpriteSheet( "susySprite", "assets/susy.png", 100, 149 );
+	this.addSpriteSheet( "danielSprite", "assets/daniel.png", 68, 129 );
 	
 	//music
 	this.addAudio( "mainTheme", 			"assets/Enchanted-Valley.wav" );
@@ -91,5 +93,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mazeGameState" );
+	this.game.states.switchState( "loadGameState" );
 };

@@ -5,22 +5,34 @@ hallwayState.create = function() {
     Kiwi.State.prototype.create.call( this );
 
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.hallwayBGImg, 0, 0 );
-    this.character = new Kiwi.GameObjects.Sprite(
-        this, this.textures.characterSprite, 50, 261 );
     
     this.leftKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A );
     this.rightKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D );
     this.downKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.S );
     //this.stateKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
 
-    this.character.animation.add("idleright", [ 0 ], 0.1, false );
-    this.character.animation.add("crouchright", [ 1 ], 0.1, false );
-    this.character.animation.add("moveright", [ 2, 3, 4, 5, 6, 7 ], 0.1, true );
-    this.character.animation.add("idleleft", [ 8 ], 0.1, false );
-    this.character.animation.add("crouchleft", [ 9 ], 0.1, false );
-    this.character.animation.add("moveleft", [ 10, 11, 12, 13, 14, 15 ], 0.1, true );
+    if(selectState.choice) {
+        this.character = new Kiwi.GameObjects.Sprite( this, this.textures.susySprite, 50, 250 );
 
-    this.facing = "right";
+        this.character.animation.add("idleright", [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21], 0.1, true );
+        this.character.animation.add("idleleft", [43,42,41,40,39,38,37,36,35,34,33,54,53,52,51,50,49,48,47,46,45,44], 0.1, true );
+        this.character.animation.add("moveright", [22,23,24,25,26,27,28,29], 0.1, true );
+        this.character.animation.add("moveleft", [65,64,63,62,61,60,59,58], 0.1, true );
+        this.character.animation.add("crouchright", [30,31,32], 0.1, false );
+        this.character.animation.add("crouchleft", [57,56,55], 0.1, false );
+    }
+    else {
+        this.character = new Kiwi.GameObjects.Sprite( this, this.textures.danielSprite, 50, 250 );
+
+        this.character.animation.add("idleright", [0,0,0,0,0,0,0,0,1,2,3,4,5,6,6,6,5,4,3,2,1], 0.1, true );
+        this.character.animation.add("idleleft", [24,24,24,24,24,24,24,24,23,22,21,20,29,28,28,28,29,20,21,22,23], 0.1, true );
+        this.character.animation.add("moveright", [7,8,9,10,11,12,13,14], 0.1, true );
+        this.character.animation.add("moveleft", [27,26,25,34,33,32,31,30], 0.1, true );
+        this.character.animation.add("crouchright", [15,16,17,18], 0.1, false );
+        this.character.animation.add("crouchleft", [39,38,37,36], 0.1, false );
+    }
+
+    this.character.animation.play( "idleright" );
 
     this.character.animation.play( "idleright" );
 
