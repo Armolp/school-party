@@ -6,7 +6,7 @@ instructionsState.create = function(){
 
 	this.game.stage.color = "4488cc";
 
-    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.backgroundWood, 0, 0);
+    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.instructionsImg, 0, 0);
     this.tempInst1 = new Kiwi.GameObjects.StaticImage(
             this, this.textures.instructionsImg, 
             this.game.stage.width/2 - this.textures.instructionsImg.width/2, 120);
@@ -22,26 +22,27 @@ instructionsState.create = function(){
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
     // Adds a menu widget to the defaultHUD of the game.
-    this.bttnNew = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -menuW, 0 );
-    this.bttnNew.style.color = 'white';
-    this.bttnNew.style.fontFamily = 'Verdana,sans-serif';
-    this.bttnNew.style.display = 'block';
-    this.bttnNew.style.boxSizing = 'border-box';
-    this.bttnNew.style.width = (menuW * 2).toString() + 'px';
-    this.bttnNew.style.textAlign = 'center';
-    this.bttnNew.style.cursor = 'pointer';
-    this.bttnNew.style.padding = '0.5em 1em';
-    this.bttnNew.style.backgroundColor = '#9c0';
+    this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -menuW, -30 );
+    this.bttnBack.style.color = 'rgb(255,226,130)';
+    this.bttnBack.style.fontFamily = 'Verdana,sans-serif';
+    this.bttnBack.style.display = 'block';
+    this.bttnBack.style.boxSizing = 'border-box';
+    this.bttnBack.style.width = (menuW * 2).toString() + 'px';
+    this.bttnBack.style.textAlign = 'center';
+    this.bttnBack.style.cursor = 'pointer';
+    this.bttnBack.style.padding = '0.5em 1em';
+    this.bttnBack.style.backgroundColor = 'transparent';
+    this.bttnBack.style.border = "solid 2px rgb(255,226,130)";
 
     this.menu = new Kiwi.HUD.Widget.Menu( this.game, this.game.stage.width/2, this.game.stage.height-50 );
-    this.menu.addMenuItem( this.bttnNew );
+    this.menu.addMenuItem( this.bttnBack );
     this.game.huds.defaultHUD.addWidget( this.menu );
     
-    this.menu.getMenuItem(0).input.onDown.add( this.newButton, this );
+    this.menu.getMenuItem(0).input.onDown.add( this.back, this );
 
-    //this.addChild(this.background);
-    this.addChild(this.textField);
-    this.addChild(this.tempInst1);
+    this.addChild(this.background);
+    //this.addChild(this.textField);
+    //this.addChild(this.tempInst1);
 };
 
 instructionsState.update = function(){
@@ -50,7 +51,7 @@ instructionsState.update = function(){
 
 };
 
-instructionsState.newButton = function () {
+instructionsState.back = function () {
     clearMenu(this.menu.container);
     this.game.states.switchState( "mainMenuState" );
 }

@@ -80,28 +80,28 @@ rouletteState.update = function(){
         	//switch to the game state in each case
         	if(c == 0) {
     			clearMenu(this.menu.container);
-				this.game.states.switchState( "catchGameState" );
+				this.game.states.switchState( "catchTutorialState" );
         	}
         	else if(c == 1) {
     			clearMenu(this.menu.container);
-				this.game.states.switchState( "mazeGameState" );
+				this.game.states.switchState( "mazeTutorialState" );
         	}
         	else if(c == 2) {
     			clearMenu(this.menu.container);
-				this.game.states.switchState( "spaceGameState" );
+				this.game.states.switchState( "spaceTutorialState" );
         	}
         	else if(c == 3) {
     			//clearMenu(this.menu.container);
-				this.game.states.switchState( "pairGameState" );
+				this.game.states.switchState( "pairTutorialState" );
         	}
         	else if(c == 4) {
 				this.step = 2*Math.PI;
     			this.rnd = Math.floor(Math.random()*40) + 50;        		
-				this.textField.text = this.rnd;
+				//this.textField.text = this.rnd;
         	}
         	else if(c == 5) {
     			clearMenu(this.menu.container);
-				this.game.states.switchState( "timelineGameState" );
+				this.game.states.switchState( "timelineTutorialState" );
         	}	
         }
 

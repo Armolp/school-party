@@ -72,7 +72,7 @@ timelineGameState.create = function(){
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 10;
     this.textField.color = '#FFFFFF';
-    this.textField.fontFamily = 'Roboto, sans-serif';
+    this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
     //declare a text field to display thescore
@@ -80,7 +80,7 @@ timelineGameState.create = function(){
     this.scoreP.x = this.game.stage.width - 10;
     this.scoreP.y = 10;
     this.scoreP.color = '#FFFFFF';
-    this.scoreP.fontFamily = 'Roboto, sans-serif';
+    this.scoreP.fontFamily = 'Verdana, sans-serif';
     this.scoreP.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_RIGHT;
 
     //CREATE END GAME SUMMARY

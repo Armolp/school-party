@@ -68,10 +68,10 @@ loadGameState.update = function(){
 
 };
 loadGameState.done = function () {
-    console.log("button was clicked");
-    clearMenu(this.menu.container);
-    clearMenu(document.getElementById("loginForm"));
-    this.game.states.switchState( "selectState" );
+
+    login();
+
+    
 }
 
 loadGameState.back = function () {
