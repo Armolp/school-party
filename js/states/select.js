@@ -33,7 +33,7 @@ selectState.create = function() {
     this.daniel.animation.play( "idleLeft" );
     
     this.block1 = new Kiwi.GameObjects.StaticImage( this, this.textures.block, 165, 140);
-    this.block1.alpha = 0.8;
+    this.block1.alpha = 0.6;
 
     this.boyTextField = new Kiwi.GameObjects.Textfield(this, 'Niño');
     this.boyTextField.x = 265;
@@ -56,7 +56,7 @@ selectState.create = function() {
     this.susy.animation.play( "idleRight" );
 
     this.block2 = new Kiwi.GameObjects.StaticImage( this, this.textures.block, 415, 140);
-    this.block2.alpha = 0.8;
+    this.block2.alpha = 0.6;
 
     this.girlTextField = new Kiwi.GameObjects.Textfield(this, 'Niña');
     this.girlTextField.x = 515;

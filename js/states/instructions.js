@@ -6,10 +6,7 @@ instructionsState.create = function(){
 
 	this.game.stage.color = "4488cc";
 
-    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.instructionsImg, 0, 0);
-    this.tempInst1 = new Kiwi.GameObjects.StaticImage(
-            this, this.textures.instructionsImg, 
-            this.game.stage.width/2 - this.textures.instructionsImg.width/2, 120);
+    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.instructionsBG, 0, 0);
 
     var menuW = 100;
     
@@ -42,7 +39,6 @@ instructionsState.create = function(){
 
     this.addChild(this.background);
     //this.addChild(this.textField);
-    //this.addChild(this.tempInst1);
 };
 
 instructionsState.update = function(){

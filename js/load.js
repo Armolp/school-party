@@ -29,18 +29,19 @@ loadState.preload = function() {
 	this.addImage( "background", 			"assets/jungle.png" );
 	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
 	this.addImage( "redFelt",		 		"assets/red-felt.png" );
-	this.addImage( "greenFelt",		 		"assets/green-felt.png" );
+	this.addImage( "greenFelt",		 		"assets/green-felt.jpg" );
 	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
 	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
 	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
+	this.addImage( "instructionsBG", 		"assets/instrucciones.png" );
 
 	//temporal images
 
 	//school images
 	this.addImage( "rouletteImg",			"assets/ruleta.png" );
 
-	this.addImage( "rouletteBGImg",			"assets/rouletteBG.png" );
+	this.addImage( "pointerImg",			"assets/pointer.png" );
 	this.addImage( "block",					"assets/dark-block.png" );
 
 	this.addImage( "scoreImg",				"assets/puntuacion.png");
@@ -117,5 +118,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "mainMenuState" );
+	this.game.states.switchState( "creditsState" );
 };

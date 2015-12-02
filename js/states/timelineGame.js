@@ -15,7 +15,8 @@ timelineGameState.create = function(){
     this.hty = [];
 
     //QUESTION DATA
-    this.timeline = ["1+1","1+2","2+2","2+3","4+2"];
+    this.ran= this.ran = Math.floor(Math.random()*questionTimeline.length);    
+    this.timeline = [questionTimeline[this.ran].a,questionTimeline[this.ran].b,questionTimeline[this.ran].c,questionTimeline[this.ran].d,questionTimeline[this.ran].e];
 
     //pull woodBGD image
     this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.backgroundWood, 0, 0);

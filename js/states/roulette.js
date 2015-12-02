@@ -16,14 +16,16 @@ rouletteState.create = function(){
     this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
-    this.ruleta = new Kiwi.GameObjects.StaticImage( this, this.textures.rouletteImg, 184, 46 );
+    this.ruleta = new Kiwi.GameObjects.StaticImage( this, this.textures.rouletteImg, 94, 36 );
+
+    this.pointer = new Kiwi.GameObjects.StaticImage( this, this.textures.pointerImg, 490, 220 );
 
     this.ruleta.rotPointX = this.ruleta.width * 0.5;
     this.ruleta.rotPointY = this.ruleta.height * 0.5;
 
     var menuW = 100;
 
-    this.bttnSpin = new Kiwi.HUD.Widget.MenuItem( this.game, 'Girar ruleta', -menuW, 340 );
+    this.bttnSpin = new Kiwi.HUD.Widget.MenuItem( this.game, 'Girar ruleta', -menuW, 0 );
     this.bttnSpin.style.color = 'white';
     this.bttnSpin.style.fontFamily = 'Verdana,sans-serif';
     this.bttnSpin.style.display = 'block';
@@ -34,19 +36,33 @@ rouletteState.create = function(){
     this.bttnSpin.style.padding = '0.5em 1em';
     this.bttnSpin.style.backgroundColor = '#9c0';
 
-    this.menu = new Kiwi.HUD.Widget.Menu( this.game, this.game.stage.width/2, 120 );
+    this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -menuW*6-20, 0 );
+    this.bttnBack.style.color = 'white';
+    this.bttnBack.style.fontFamily = 'Verdana,sans-serif';
+    this.bttnBack.style.display = 'block';
+    this.bttnBack.style.boxSizing = 'border-box';
+    this.bttnBack.style.width = (menuW * 2).toString() + 'px';
+    this.bttnBack.style.textAlign = 'center';
+    this.bttnBack.style.cursor = 'pointer';
+    this.bttnBack.style.padding = '0.5em 1em';
+    this.bttnBack.style.backgroundColor = '#9c0';
+
+    this.menu = new Kiwi.HUD.Widget.Menu( this.game, 640, 460 );
     this.menu.addMenuItem( this.bttnSpin );
+    this.menu.addMenuItem( this.bttnBack );
     this.game.huds.defaultHUD.addWidget( this.menu );
 
     this.menu.getMenuItem(0).input.onDown.add( this.swchSpin, this );
+    this.menu.getMenuItem(1).input.onDown.add( this.swchBack, this );
 
     this.step = 0;
     this.rnd = 1;
     this.bool = false;
 
     this.addChild(this.background);
-    this.addChild(this.textField);
+    //this.addChild(this.textField);
     this.addChild(this.ruleta);
+    this.addChild(this.pointer);
 };
 
 rouletteState.update = function(){
@@ -116,4 +132,9 @@ rouletteState.swchSpin = function () {
     this.rnd = Math.floor(Math.random()*40) + 50;
     //this.rnd = 22;
     this.textField.text = "Que te tocara esta vez?";
+}
+
+rouletteState.swchBack = function() {
+    clearMenu(this.menu.container);
+    this.game.states.switchState( "hallwayState" );
 }
