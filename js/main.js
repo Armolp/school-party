@@ -27,10 +27,16 @@ game.states.addState( rouletteState );
 
 game.states.addState( timelineTutorialState );
 game.states.addState( timelineGameState );
+
 game.states.addState( catchTutorialState );
 game.states.addState( catchGameState );
+
+game.states.addState( memoryGameState );
+game.states.addState( memoryTutorialState );
+
 game.states.addState( mazeTutorialState );
 game.states.addState( mazeGameState );
+
 game.states.addState( spaceTutorialState );
 game.states.addState( spaceGameState );
 

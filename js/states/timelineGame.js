@@ -67,7 +67,7 @@ timelineGameState.create = function(){
         this.cellGroup.addChild( c );
     }
 
-    //declare a text field
+    //create a text field
     this.textField = new Kiwi.GameObjects.Textfield(this, '');
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 10;

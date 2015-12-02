@@ -3,6 +3,8 @@ var loadState = new Kiwi.State( "loadState" );
 loadState.preload = function() {
 
 	Kiwi.State.prototype.preload.call( this );
+
+	console.log("inside preload from loadState");
 	
 	this.game.states.rebuildLibraries();
 
@@ -27,6 +29,8 @@ loadState.preload = function() {
 	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
 
+	console.log("check 1");
+
 	//temporal images
 	this.addImage( "creditsImg", 			"assets/credits.png" );
 	this.addImage( "newCharImg", 			"assets/newChar.png" );
@@ -40,6 +44,15 @@ loadState.preload = function() {
 	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
 
 	this.addImage( "scoreImg",				"assets/puntuacion.png");
+
+	console.log("check 2");
+
+	//memory images
+	this.addImage( "memoryTut", 			"assets/memory/memoryTut.png" );
+	this.addImage( "carta1",        		"assets/memory/carta1.png");
+    this.addImage( "carta2",        		"assets/memory/carta2.png");
+
+	console.log("check 3");
 
 	//timeline images
 	this.addImage( "timeTut", 				"assets/timeline/timelineTutorial.png" );
@@ -76,7 +89,7 @@ loadState.preload = function() {
 	
 	//music
 	
-	//this.addAudio( "pairTheme", 			"assets/music/Pamgaea.mp3" );
+	this.addAudio( "memoryTheme", 			"assets/music/Pamgaea.mp3" );
 	//this.addAudio( "timeTheme", 			"assets/music/Pixelland.mp3" );
 	//this.addAudio( "mazeTheme", 			"assets/music/Kawai Kitsune.mp3" );
 	//this.addAudio( "catchTheme", 			"assets/music/Kings of Tara.mp3" );

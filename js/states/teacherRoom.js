@@ -14,12 +14,12 @@ teacherRoomState.create = function() {
     if(selectState.choice) {
         this.character = new Kiwi.GameObjects.Sprite( this, this.textures.susySprite, 230, 250 );
 
-        this.character.animation.add("idleright", [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21], 0.1, true );
-        this.character.animation.add("idleleft", [43,42,41,40,39,38,37,36,35,34,33,54,53,52,51,50,49,48,47,46,45,44], 0.1, true );
-        this.character.animation.add("moveright", [22,23,24,25,26,27,28,29], 0.1, true );
-        this.character.animation.add("moveleft", [65,64,63,62,61,60,59,58], 0.1, true );
+        this.character.animation.add("idleright",   [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21], 0.1, true );
+        this.character.animation.add("idleleft",    [43,42,41,40,39,38,37,36,35,34,33,54,53,52,51,50,49,48,47,46,45,44], 0.1, true );
+        this.character.animation.add("moveright",   [22,23,24,25,26,27,28,29], 0.1, true );
+        this.character.animation.add("moveleft",    [65,64,63,62,61,60,59,58], 0.1, true );
         this.character.animation.add("crouchright", [30,31,32], 0.1, false );
-        this.character.animation.add("crouchleft", [57,56,55], 0.1, false );
+        this.character.animation.add("crouchleft",  [57,56,55], 0.1, false );
     }
     else {
         this.character = new Kiwi.GameObjects.Sprite( this, this.textures.danielSprite, 230, 250 );
@@ -34,7 +34,36 @@ teacherRoomState.create = function() {
 
     this.character.animation.play( "idleright" );
 
+    //create the text fields
+    this.boardText1 = new Kiwi.GameObjects.Textfield(this, 'Hola!');
+    this.boardText1.x = this.game.stage.width / 2;
+    this.boardText1.y = 50;
+    this.boardText1.color = 'rgb(255,226,130)';
+    this.boardText1.fontSize = 15;
+    //this.boardText1.fontWeight = "bold";
+    this.boardText1.fontFamily = 'Verdana, sans-serif';
+    this.boardText1.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
+    this.boardText2 = new Kiwi.GameObjects.Textfield(this, 'Hola!');
+    this.boardText2.x = this.game.stage.width / 2;
+    this.boardText2.y = 50;
+    this.boardText2.color = 'rgb(255,226,130)';
+    this.boardText2.fontSize = 15;
+    //this.boardText2.fontWeight = "bold";
+    this.boardText2.fontFamily = 'Verdana, sans-serif';
+    this.boardText2.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
+    this.boardText1 = new Kiwi.GameObjects.Textfield(this, 'Hola!');
+    this.boardText1.x = this.game.stage.width / 2;
+    this.boardText1.y = 50;
+    this.boardText1.color = 'rgb(255,226,130)';
+    this.boardText1.fontSize = 15;
+    //this.boardText1.fontWeight = "bold";
+    this.boardText1.fontFamily = 'Verdana, sans-serif';
+    this.boardText1.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
     this.addChild( this.background );
+    this.addChild( this.boardText1 );
     this.addChild( this.character );
 };
 

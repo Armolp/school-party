@@ -92,7 +92,7 @@ rouletteState.update = function(){
         	}
         	else if(c == 3) {
     			//clearMenu(this.menu.container);
-				this.game.states.switchState( "pairTutorialState" );
+				this.game.states.switchState( "memoryTutorialState" );
         	}
         	else if(c == 4) {
 				this.step = 2*Math.PI;
