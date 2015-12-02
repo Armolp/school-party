@@ -8,7 +8,11 @@ selectState.create = function() {
 
     this.choice;
 
-    //declare a text field
+    this.mouse = this.game.input.mouse;
+
+    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.BG2, 0, 0);
+
+    //create a text field
     this.textField = new Kiwi.GameObjects.Textfield(this, 'Elige tu Personaje');
     this.textField.x = this.game.stage.width / 2;
     this.textField.y = 50;
@@ -16,8 +20,31 @@ selectState.create = function() {
     this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
-    //declare the character object
-    this.susy = new Kiwi.GameObjects.Sprite( this, this.textures.susySprite, 470, 174 );
+    //create the girl character object
+    this.daniel = new Kiwi.GameObjects.Sprite( this, this.textures.danielSprite, 230, 232 );
+
+    this.daniel.animation.add("idleRight", [0,0,0,0,0,0,0,0,1,2,3,4,5,6,6,6,5,4,3,2,1], 0.1, true );
+    this.daniel.animation.add("idleLeft", [24,24,24,24,24,24,24,24,23,22,21,20,29,28,28,28,29,20,21,22,23], 0.1, true );
+    this.daniel.animation.add("walkRight", [7,8,9,10,11,12,13,14], 0.1, true );
+    this.daniel.animation.add("walkLeft", [27,26,25,34,33,32,31,30], 0.1, true );
+    this.daniel.animation.add("crouchRight", [15,16,17,18], 0.1, false );
+    this.daniel.animation.add("crouchLeft", [39,38,37,36], 0.1, false );
+
+    this.daniel.animation.play( "idleLeft" );
+    
+    this.block1 = new Kiwi.GameObjects.StaticImage( this, this.textures.block, 165, 140);
+    this.block1.alpha = 0.8;
+
+    this.boyTextField = new Kiwi.GameObjects.Textfield(this, 'Niño');
+    this.boyTextField.x = 265;
+    this.boyTextField.y = 170;
+    this.boyTextField.fontSize = 17;
+    this.boyTextField.color = '#FFFFFF';
+    this.boyTextField.fontFamily = 'Verdana, sans-serif';
+    this.boyTextField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
+    //create the girl character object
+    this.susy = new Kiwi.GameObjects.Sprite( this, this.textures.susySprite, 470, 214 );
 
     this.susy.animation.add("idleRight", [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21], 0.1, true );
     this.susy.animation.add("idleLeft", [43,42,41,40,39,38,37,36,35,34,33,54,53,52,51,50,49,48,47,46,45,44], 0.1, true );
@@ -28,16 +55,18 @@ selectState.create = function() {
 
     this.susy.animation.play( "idleRight" );
 
-    this.daniel = new Kiwi.GameObjects.Sprite( this, this.textures.danielSprite, 230, 192 );
+    this.block2 = new Kiwi.GameObjects.StaticImage( this, this.textures.block, 415, 140);
+    this.block2.alpha = 0.8;
 
-    this.daniel.animation.add("idleRight", [0,0,0,0,0,0,0,0,1,2,3,4,5,6,6,6,5,4,3,2,1], 0.1, true );
-    this.daniel.animation.add("idleLeft", [24,24,24,24,24,24,24,24,23,22,21,20,29,28,28,28,29,20,21,22,23], 0.1, true );
-    this.daniel.animation.add("walkRight", [7,8,9,10,11,12,13,14], 0.1, true );
-    this.daniel.animation.add("walkLeft", [27,26,25,34,33,32,31,30], 0.1, true );
-    this.daniel.animation.add("crouchRight", [15,16,17,18], 0.1, false );
-    this.daniel.animation.add("crouchLeft", [39,38,37,36], 0.1, false );
+    this.girlTextField = new Kiwi.GameObjects.Textfield(this, 'Niña');
+    this.girlTextField.x = 515;
+    this.girlTextField.y = 170;
+    this.girlTextField.fontSize = 17;
+    this.girlTextField.color = '#FFFFFF';
+    this.girlTextField.fontFamily = 'Verdana, sans-serif';
+    this.girlTextField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
-    this.daniel.animation.play( "idleLeft" );
+    /* create the menu buttons 
 
     var menuW = 100;
 
@@ -71,9 +100,16 @@ selectState.create = function() {
     
     this.menu.getMenuItem(0).input.onDown.add( this.girl, this );
     this.menu.getMenuItem(1).input.onDown.add( this.boy, this );
+
+    */
     
 
+    this.addChild( this.background );
     this.addChild( this.textField );
+    this.addChild( this.block1 );
+    this.addChild( this.block2 );
+    this.addChild( this.boyTextField );
+    this.addChild( this.girlTextField );
     this.addChild( this.susy );
     this.addChild( this.daniel );
 
@@ -81,18 +117,29 @@ selectState.create = function() {
 
 selectState.girl = function () {
     this.choice = true;
-    clearMenu(this.menu.container);
+    //clearMenu(this.menu.container);
     this.game.states.switchState( "teacherRoomState" );
 }
 
 selectState.boy = function () {
     this.choice = false;
-    clearMenu(this.menu.container);
+    //clearMenu(this.menu.container);
     this.game.states.switchState( "teacherRoomState" );
 }
 
 selectState.update = function() {
 
     Kiwi.State.prototype.update.call( this );
+
+    if(this.block1.box.bounds.contains(this.mouse.x,this.mouse.y)) {
+        if(this.mouse.isDown) {
+            this.boy();
+        }
+    }
+    else if(this.block2.box.bounds.contains(this.mouse.x,this.mouse.y)) {
+        if(this.mouse.isDown) {
+            this.girl();
+        }
+    }
 
 }

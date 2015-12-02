@@ -36,34 +36,58 @@ teacherRoomState.create = function() {
 
     //create the text fields
     this.boardText1 = new Kiwi.GameObjects.Textfield(this, 'Hola!');
-    this.boardText1.x = this.game.stage.width / 2;
-    this.boardText1.y = 50;
+    this.boardText1.x = 490;
+    this.boardText1.y = 80;
     this.boardText1.color = 'rgb(255,226,130)';
     this.boardText1.fontSize = 15;
     //this.boardText1.fontWeight = "bold";
     this.boardText1.fontFamily = 'Verdana, sans-serif';
     this.boardText1.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
-    this.boardText2 = new Kiwi.GameObjects.Textfield(this, 'Hola!');
-    this.boardText2.x = this.game.stage.width / 2;
-    this.boardText2.y = 50;
+    this.boardText2 = new Kiwi.GameObjects.Textfield(this, 'Bienvenido a School Party.');
+    this.boardText2.x = 490;
+    this.boardText2.y = 100;
     this.boardText2.color = 'rgb(255,226,130)';
     this.boardText2.fontSize = 15;
     //this.boardText2.fontWeight = "bold";
     this.boardText2.fontFamily = 'Verdana, sans-serif';
     this.boardText2.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
 
-    this.boardText1 = new Kiwi.GameObjects.Textfield(this, 'Hola!');
-    this.boardText1.x = this.game.stage.width / 2;
-    this.boardText1.y = 50;
-    this.boardText1.color = 'rgb(255,226,130)';
-    this.boardText1.fontSize = 15;
-    //this.boardText1.fontWeight = "bold";
-    this.boardText1.fontFamily = 'Verdana, sans-serif';
-    this.boardText1.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    this.boardText3 = new Kiwi.GameObjects.Textfield(this, 'Aqui puedes aprender jugando.');
+    this.boardText3.x = 490;
+    this.boardText3.y = 120;
+    this.boardText3.color = 'rgb(255,226,130)';
+    this.boardText3.fontSize = 15;
+    //this.boardText3.fontWeight = "bold";
+    this.boardText3.fontFamily = 'Verdana, sans-serif';
+    this.boardText3.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
+    this.boardText4 = new Kiwi.GameObjects.Textfield(this, 'Para ir a los juegos ve a la');
+    this.boardText4.x = 490;
+    this.boardText4.y = 140;
+    this.boardText4.color = 'rgb(255,226,130)';
+    this.boardText4.fontSize = 15;
+    //this.boardText4.fontWeight = "bold";
+    this.boardText4.fontFamily = 'Verdana, sans-serif';
+    this.boardText4.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
+    this.boardText5 = new Kiwi.GameObjects.Textfield(this, 'derecha cruzando el pasillo.');
+    this.boardText5.x = 490;
+    this.boardText5.y = 160;
+    this.boardText5.color = 'rgb(255,226,130)';
+    this.boardText5.fontSize = 15;
+    //this.boardText5.fontWeight = "bold";
+    this.boardText5.fontFamily = 'Verdana, sans-serif';
+    this.boardText5.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+
+
 
     this.addChild( this.background );
     this.addChild( this.boardText1 );
+    this.addChild( this.boardText2 );
+    this.addChild( this.boardText3 );
+    this.addChild( this.boardText4 );
+    this.addChild( this.boardText5 );
     this.addChild( this.character );
 };
 

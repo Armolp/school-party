@@ -6,7 +6,7 @@ rouletteState.create = function(){
 
     this.game.stage.color = "4488cc";
 
-    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.rouletteBGImg, 0, 0);
+    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.BG1, 0, 0);
 
     //declare a text field
     this.textField = new Kiwi.GameObjects.Textfield(this, 'Roulette Room');

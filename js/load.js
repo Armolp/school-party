@@ -24,35 +24,32 @@ loadState.preload = function() {
 	this.tweenIn.start();
 
 	//backgrounds
+	this.addImage( "BG1",		 			"assets/BG1.png" );
+	this.addImage( "BG2",		 			"assets/BG2.png" );
 	this.addImage( "background", 			"assets/jungle.png" );
+	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
+	this.addImage( "redFelt",		 		"assets/red-felt.png" );
+	this.addImage( "greenFelt",		 		"assets/green-felt.png" );
 	this.addImage( "backgroundMainMenu", 	"assets/mainMenuBG.png" );
+	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
 	this.addImage( "loadingImage", 			"assets/loadingImage.png" );
 	this.addImage( "backgroundWood", 		"assets/wood-background.png" );
 
-	console.log("check 1");
-
 	//temporal images
-	this.addImage( "creditsImg", 			"assets/credits.png" );
-	this.addImage( "newCharImg", 			"assets/newChar.png" );
-	this.addImage( "saveCharImg", 			"assets/saveChar.png" );
-	this.addImage( "instructionsImg", 		"assets/instruciones.png" );
 
 	//school images
 	this.addImage( "rouletteImg",			"assets/ruleta.png" );
-	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
+
 	this.addImage( "rouletteBGImg",			"assets/rouletteBG.png" );
-	this.addImage( "teacherRoomImg", 		"assets/teacherRoom.png" );
+	this.addImage( "block",					"assets/dark-block.png" );
 
 	this.addImage( "scoreImg",				"assets/puntuacion.png");
 
-	console.log("check 2");
-
 	//memory images
 	this.addImage( "memoryTut", 			"assets/memory/memoryTut.png" );
+	this.addImage( "carta",        			"assets/memory/carta.png");
 	this.addImage( "carta1",        		"assets/memory/carta1.png");
     this.addImage( "carta2",        		"assets/memory/carta2.png");
-
-	console.log("check 3");
 
 	//timeline images
 	this.addImage( "timeTut", 				"assets/timeline/timelineTutorial.png" );

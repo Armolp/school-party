@@ -45,7 +45,7 @@ timelineGameState.create = function(){
         while(b) {
             b = false;
             x = Math.random()*(this.game.stage.width - 70);
-            y = Math.random()*(this.game.stage.height - 170);
+            y = Math.random()*(this.game.stage.height - 200) + 30;
             c = new timelineCell(this, x, y, i+1);
 
             console.log("Trying to create cell "+(i+1)+" in ("+Math.floor(x)+","+Math.floor(y)+")");
@@ -195,7 +195,7 @@ timelineGameState.update = function(){
 var timelineCell = function( state, x, y, number){
 
     //call the superclass constructor
-    Kiwi.GameObjects.Sprite.call( this, state, state.textures.squareImg, x, y, false );
+    Kiwi.GameObjects.Sprite.call( this, state, state.textures.carta, x, y, false );
 
     this.number = number;
 };
