@@ -31,8 +31,8 @@ catchGameState.create = function(){
     this.bagGroup = new Kiwi.Group(this);
     this.addChild(this.bagGroup);
 
-    this.leftKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.LEFT);
-    this.rightKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.RIGHT);
+    this.leftKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A);
+    this.rightKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D);
 
     this.coinText = new Kiwi.GameObjects.Textfield(this, 'Dinero recolectado: 0', 10, 10, '#000');
     this.coinText.fontSize = 20;

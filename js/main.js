@@ -23,6 +23,7 @@ game.states.addState( selectState );
 
 game.states.addState( teacherRoomState );
 game.states.addState( hallwayState );
+game.states.addState( scoreState );
 game.states.addState( rouletteState );
 
 game.states.addState( timelineTutorialState );

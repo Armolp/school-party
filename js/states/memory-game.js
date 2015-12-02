@@ -147,24 +147,26 @@ memoryGameState.create = function() {
     this.puntuacion.visible = false;
 
     //se ponen las preguntas y respuestas
-    this.preguntas[0] = 'A';
-    this.preguntas[1] = 'B';
-    this.preguntas[2] = 'C';
-    this.preguntas[3] = 'D';
-    this.preguntas[4] = 'E';
-    this.preguntas[5] = 'F';
-    this.preguntas[6] = 'G';
-    this.preguntas[7] = 'H';
-    this.preguntas[8] = 'I';
-    this.preguntas[9] = '1';
-    this.preguntas[10] = '2';
-    this.preguntas[11] = '3';
-    this.preguntas[12] = '4';
-    this.preguntas[13] = '5';
-    this.preguntas[14] = '6';
-    this.preguntas[15] = '7';
-    this.preguntas[16] = '8';
-    this.preguntas[17] = '9';
+
+    this.ran = Math.floor(Math.random()*questionsM.length);
+    this.preguntas[0] = questionsM[this.ran].p1;
+    this.preguntas[1] = questionsM[this.ran].p2;
+    this.preguntas[2] = questionsM[this.ran].p3;
+    this.preguntas[3] = questionsM[this.ran].p4;
+    this.preguntas[4] = questionsM[this.ran].p5;
+    this.preguntas[5] = questionsM[this.ran].p6;
+    this.preguntas[6] = questionsM[this.ran].p7;
+    this.preguntas[7] = questionsM[this.ran].p8;
+    this.preguntas[8] = questionsM[this.ran].p9;
+    this.preguntas[9] = questionsM[this.ran].r1;
+    this.preguntas[10] = questionsM[this.ran].r2;
+    this.preguntas[11] = questionsM[this.ran].r3;
+    this.preguntas[12] = questionsM[this.ran].r4;
+    this.preguntas[13] = questionsM[this.ran].r5;
+    this.preguntas[14] = questionsM[this.ran].r6;
+    this.preguntas[15] = questionsM[this.ran].r7;
+    this.preguntas[16] = questionsM[this.ran].r8;
+    this.preguntas[17] = questionsM[this.ran].r9;
 
 
 
@@ -229,12 +231,12 @@ memoryGameState.update = function() {
                     if (cartas1[j].box.bounds.contains(this.mouse.x, this.mouse.y) && carta2visible[j].visible == false && carta1visible[j].visible == true) {
                         carta2visible[j].visible = true;
                         if (this.iCont != 0) {
-                            this.textField2.text = this.texto[j];
+                            this.textField2.text = "Carta 2: " +this.texto[j];
                             this.textField2.x = 90;
                             this.textField2.y = 460;
                             this.textField2.visible = true;
                         } else {
-                            this.textField.text = this.texto[j];
+                            this.textField.text = "Carta 1: " +this.texto[j];
                             this.textField.x = 90;
                             this.textField.y = 430;
                             this.textField.visible = true;

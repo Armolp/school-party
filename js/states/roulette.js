@@ -91,7 +91,7 @@ rouletteState.update = function(){
         	//calculate a value from 0 to 5 from the angle of rotation of the image
         	var c = Math.floor(this.ruleta.rotation%(2*Math.PI) % 6);
 
-        	this.textField.text = c;
+        	//this.textField.text = c;
 
         	//switch to the game state in each case
         	if(c == 0) {
@@ -107,7 +107,7 @@ rouletteState.update = function(){
 				this.game.states.switchState( "spaceTutorialState" );
         	}
         	else if(c == 3) {
-    			//clearMenu(this.menu.container);
+    			clearMenu(this.menu.container);
 				this.game.states.switchState( "memoryTutorialState" );
         	}
         	else if(c == 4) {

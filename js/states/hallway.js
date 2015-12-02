@@ -9,7 +9,7 @@ hallwayState.create = function() {
     this.leftKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A );
     this.rightKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D );
     this.downKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.S );
-    //this.stateKey   = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
+    this.upKey      = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
 
     if(selectState.choice) {
         this.character = new Kiwi.GameObjects.Sprite( this, this.textures.susySprite, 50, 250 );
@@ -74,6 +74,11 @@ hallwayState.update = function() {
         }
         if ( this.character.animation.currentAnimation.name !== "moveright" ) {
             this.character.animation.play("moveright");
+        }
+    }
+    else if( this.upKey.isDown ) {
+        if( 320<this.character.x && this.character.x<435 ) {
+            this.game.states.switchState( "scoreState" );
         }
     }
     else {

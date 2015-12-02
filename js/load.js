@@ -87,11 +87,11 @@ loadState.preload = function() {
 	
 	//music
 	
-	this.addAudio( "memoryTheme", 			"assets/music/Pamgaea.mp3" );
+	//this.addAudio( "memoryTheme", 			"assets/music/Pamgaea.mp3" );
 	//this.addAudio( "timeTheme", 			"assets/music/Pixelland.mp3" );
 	//this.addAudio( "mazeTheme", 			"assets/music/Kawai Kitsune.mp3" );
 	//this.addAudio( "catchTheme", 			"assets/music/Kings of Tara.mp3" );
-	this.addAudio( "mainTheme", 			"assets/music/Enchanted-Valley.wav" );
+	//this.addAudio( "mainTheme", 			"assets/music/Enchanted-Valley.wav" );
 	//this.addAudio( "spaceTheme", 			"assets/music/Video Dungeon Boss.mp3" );
 	
 };
@@ -118,5 +118,5 @@ loadState.create = function(){
 }
 
 loadState.switchToMain = function() {
-	this.game.states.switchState( "creditsState" );
+	this.game.states.switchState( "mainMenuState" );
 };

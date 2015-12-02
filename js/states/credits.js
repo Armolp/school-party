@@ -7,8 +7,6 @@ creditsState.create = function(){
 	this.game.stage.color = "4488cc";
 
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.BG1, 0, 0);
-
-    var menuW = 100;
     
     //declare a text field
     this.textField = new Kiwi.GameObjects.Textfield(this, 'Creditos');
@@ -17,6 +15,8 @@ creditsState.create = function(){
     this.textField.color = '#FFFFFF';
     this.textField.fontFamily = 'Verdana, sans-serif';
     this.textField.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    
+    var menuW = 100;
   
     // Adds a menu widget to the defaultHUD of the game.
     this.bttnBack = new Kiwi.HUD.Widget.MenuItem( this.game, 'Regresar', -menuW, 0);
@@ -141,10 +141,6 @@ creditsState.create = function(){
     this.credits13.color = '#FFFFFF';
     this.credits13.fontFamily = 'Verdana, sans-serif';
     this.credits13.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
-
-    
-
-
 
     this.addChild(this.background);
 
