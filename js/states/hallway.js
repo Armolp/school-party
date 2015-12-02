@@ -54,7 +54,7 @@ hallwayState.update = function() {
 
         this.facing = "left";
         if ( this.character.transform.x > -70 ) {
-            this.character.transform.x -= 3;
+            this.character.transform.x -= 6;
         }
         else {
             this.game.states.switchState( "teacherRoomState" );
@@ -67,7 +67,7 @@ hallwayState.update = function() {
 
         this.facing = "right";
         if ( this.character.transform.x < 720 ) {
-            this.character.transform.x += 3;
+            this.character.transform.x += 6;
         }
         else{
             this.game.states.switchState( "rouletteState" );

@@ -43,7 +43,7 @@ memoryGameState.create = function() {
 
 
     // se declaran las imagenes
-    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.backgroundWood, 0, 0);
+    this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.redFelt, 0, 0);
     this.puntuacion = new Kiwi.GameObjects.StaticImage(this, this.textures.scoreImg, 185, 100);
     this.carta1Group = new Kiwi.Group(this);
     this.carta2Group = new Kiwi.Group(this);
@@ -52,25 +52,30 @@ memoryGameState.create = function() {
 
     //e declaran los textos que se muestran:
 
+    //stop old music, declare new music and start it
+    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'memoryTheme', 1, true );
+    loadState.backgroundMusic.stop();
+    this.backgroundMusic.play();
+
     // texto de la primera carta seleccionada
     this.textField = new Kiwi.GameObjects.Textfield(this, '');
     this.textField.x = 100;
     this.textField.y = 10;
-    this.textField.color = '#000000';
+    this.textField.color = '#FFFFFF';
     this.textField.fontFamily = 'Verdana, sans-serif';
 
     // texto de la segunda carta seleccionada
     this.textField2 = new Kiwi.GameObjects.Textfield(this, '');
     this.textField2.x = 200;
     this.textField2.y = 10;
-    this.textField2.color = '#000000';
+    this.textField2.color = '#FFFFFF';
     this.textField2.fontFamily = 'Verdana, sans-serif';
 
     // texto de los puntos extra
     this.textField3 = new Kiwi.GameObjects.Textfield(this, '');
     this.textField3.x = 90;
     this.textField3.y = 20;
-    this.textField3.color = '#000000';
+    this.textField3.color = '#FFFFFF';
     this.textField3.fontFamily = 'Verdana, sans-serif';
 
     // se agregan los objetos al estado
@@ -85,24 +90,24 @@ memoryGameState.create = function() {
 
 
     // se agregan las 18 cartas del tablero a sus grupos
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 90, 100));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 190, 100));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 290, 100));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 390, 100));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 490, 100));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 590, 100));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 90, 210));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 190, 210));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 290, 210));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 390, 210));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 490, 210));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 590, 210));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 90, 320));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 190, 320));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 290, 320));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 390, 320));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 490, 320));
-    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta1"], 590, 320));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 90, 100));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 190, 100));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 290, 100));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 390, 100));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 490, 100));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 590, 100));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 90, 210));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 190, 210));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 290, 210));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 390, 210));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 490, 210));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 590, 210));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 90, 320));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 190, 320));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 290, 320));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 390, 320));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 490, 320));
+    this.carta1Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta"], 590, 320));
     this.carta2Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta2"], 90, 100));
     this.carta2Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta2"], 190, 100));
     this.carta2Group.addChild(new Kiwi.GameObjects.Sprite(this, this.textures["carta2"], 290, 100));
@@ -313,7 +318,9 @@ memoryGameState.update = function() {
 
         if (this.mouse.isDown) {
             this.game.input.mouse.reset();
-            this.game.states.switchState( "rouletteState" );
+            this.backgroundMusic.stop();
+            loadState.backgroundMusic.play();
+            this.game.states.switchState( "hallwayState" );
         }
     }
 

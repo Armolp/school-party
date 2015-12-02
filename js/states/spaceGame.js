@@ -410,7 +410,7 @@ spaceGameState.update = function() {
 		if (this.midKey.isDown) {
 			this.backgroundMusic.stop();
 			loadState.backgroundMusic.play();
-			this.game.states.switchState("teacherRoomState");
+			this.game.states.switchState("hallwayState");
 		}
 	}
 

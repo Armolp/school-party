@@ -3,7 +3,7 @@ Parse.initialize("AK26J8RDJqlwxb2wewzz4sE7dpvYJOdVstu7v6be", "RrkuVkdBBws0vADmr1
 var Timeline = Parse.Object.extend("Timeline");
 var Timeline = new Timeline();
 
-function getData() {
+function getDataTime() {
   var query = new Parse.Query(Timeline);
   query.find({
     success: function(data) {
@@ -41,4 +41,4 @@ function getData() {
   });
 }
 
-window.onload = getData;
+//window.onload = getDataTime;

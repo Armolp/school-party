@@ -19,7 +19,7 @@ timelineGameState.create = function(){
     this.timeline = [questionTimeline[this.ran].a,questionTimeline[this.ran].b,questionTimeline[this.ran].c,questionTimeline[this.ran].d,questionTimeline[this.ran].e];
 
     //pull woodBGD image
-    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.backgroundWood, 0, 0);
+    this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.greenFelt, 0, 0);
 
     //declare mouse input
     this.mouse = this.game.input.mouse;
@@ -144,7 +144,7 @@ timelineGameState.update = function(){
         if(this.sKey.isDown) {
             this.backgroundMusic.stop();
             loadState.backgroundMusic.play();
-            this.game.states.switchState( "teacherRoomState" );
+            this.game.states.switchState( "hallwayState" );
         }
     }
     else {

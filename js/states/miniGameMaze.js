@@ -22,6 +22,8 @@ mazeGameState.create = function(){
     this.charX = 9;
     this.charY = 0;
     
+    console.log("check1");
+    
     this.ran = Math.floor(Math.random()*questions.length);
     //QUESTION VARIABLES
     //question extracted from parse
@@ -30,7 +32,7 @@ mazeGameState.create = function(){
     this.opt = [questions[this.ran].a,questions[this.ran].b,questions[this.ran].c];
     //correct answer
     this.ans = questions[this.ran].answer;
-    
+
     //TECNICAL VARIABLES
     //delay variable to extend mesages in the textfield
     this.delay = 0;
@@ -46,7 +48,7 @@ mazeGameState.create = function(){
     this.backgroundMusic.play();
 
     //put a background color to the stage
-    this.game.stage.color = "a3a949";
+    this.game.stage.color = "000000";
 
     //declare keyboard inputs 
     this.leftKey    = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A );
@@ -55,12 +57,21 @@ mazeGameState.create = function(){
     this.upKey      = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.W );
     this.sKey       = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.SPACEBAR );
 
+    this.pause = false;
+    this.pauseKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.P );
+    this.pauseGui = new Kiwi.GameObjects.StaticImage( this, this.textures.pausaImg, 184, 106);
+    this.pauseGui.visible = false;
+    this.muteIcon = new Kiwi.GameObjects.StaticImage( this, this.textures.mazeCharImg, 500, 150);
+    this.muteIcon.visible = false;
+
     //declare mouse input
     this.mouse = this.game.input.mouse;
 
     //this.background = new Kiwi.GameObjects.StaticImage( this, this.textures.backgroundWood, 0, 0 );
 
     this.cellGroup = new Kiwi.Group( this );
+
+    console.log("check2");
 
     //create cells for the maze
     for(var i=0; i<this.dimR; i++) {
@@ -96,8 +107,12 @@ mazeGameState.create = function(){
         }
     }
 
+    console.log("check3");
+
     //generate the maze starting from cell 0,0
     this.mazeGenerator(0, 0);
+
+    console.log("check4");
 
     var rnd, cell;
 
@@ -185,6 +200,10 @@ mazeGameState.create = function(){
     this.addChild(this.character);
     this.addChild(this.textField);
     this.addChild(this.scoreP);
+
+    this.addChild(this.pauseGui);
+    this.addChild(this.muteIcon);
+
     this.addChild(this.scoreUI);
     this.addChild(this.scoreUITextField1);
     this.addChild(this.scoreUITextField2);
@@ -281,114 +300,134 @@ mazeGameState.update = function(){
 
     Kiwi.State.prototype.update.call( this );
 
-    if(this.delay > 0) {
-        this.delay--;
-    }
-    else if(this.textField.text != "Correcto") {
-        this.textField.text = this.question;
-    }
+    if(!this.pause) {
 
-    var s;
-    if(0 <= this.charY*this.dimC+this.charX && this.charY*this.dimC+this.charX < this.cellGroup.members.length) {
-        //get the wall informacion for the current cell
-        s = this.cellGroup.members[this.charY*this.dimC+this.charX].walls;
+        if(this.delay > 0) {
+            this.delay--;
+        }
+        else if(this.textField.text != "Correcto") {
+            this.textField.text = this.question;
+        }
+
+        var s;
+        if(0 <= this.charY*this.dimC+this.charX && this.charY*this.dimC+this.charX < this.cellGroup.members.length) {
+            //get the wall informacion for the current cell
+            s = this.cellGroup.members[this.charY*this.dimC+this.charX].walls;
+        }
+        else {
+            s = "UDLR";
+        }
+
+        if(this.textField.text == "Correcto") {
+            if(this.sKey.isDown) {
+                this.backgroundMusic.stop();
+                loadState.backgroundMusic.play();
+                this.game.states.switchState( "hallwayState" );
+            }
+        }
+        //if it is moving change the position of the character until it reaches the target cell
+        else if(this.moving) {
+            //check if there is a difrence in the X axis
+            if(this.character.x < this.charX*36 + this.offsetX) {
+                this.character.x += 4;
+            }
+            else if(this.character.x > this.charX*36 + this.offsetX) {
+                this.character.x -= 4;
+            }
+            //check if there is a difrence in the Y axis
+            if(this.character.y < this.charY*36 + this.offsetY) {
+                this.character.y += 4;
+            }
+            else if(this.character.y > this.charY*36 + this.offsetY) {
+                this.character.y -= 4;
+            }
+            //check there is no diffrence
+            if(this.character.x == this.charX*36 + this.offsetX && this.character.y == this.charY*36 + this.offsetY) {
+                this.moving = false;
+            }
+        }
+        //if it is not moving accept inputs
+        else if( this.upKey.isDown && s[0]=='u' ) {
+            this.charY -= 1;
+            this.moving = true;
+        }
+        else if( this.downKey.isDown && s[1]=='d' ) {
+            this.charY += 1;
+            this.moving = true;
+        }
+        else if( this.leftKey.isDown && s[2]=='l' ) {
+            this.charX -= 1;
+            this.moving = true;
+        }
+        else if( this.rightKey.isDown && s[3]=='r' ) {
+            this.charX += 1;
+            this.moving = true;
+        }
+
+        //this.textField.text = "("+Math.floor(this.charX)+","+Math.floor(this.charY)+") "+ s + " " + this.moving;
+
+        //display answers when hovering with the mouse
+        if(this.goal1.box.bounds.contains(this.mouse.x,this.mouse.y)) {
+            this.textField.text = this.opt[0];
+        }
+        if(this.goal2.box.bounds.contains(this.mouse.x,this.mouse.y)) {
+            this.textField.text = this.opt[1];
+        }
+        if(this.goal3.box.bounds.contains(this.mouse.x,this.mouse.y)) {
+            this.textField.text = this.opt[2];
+        }
+        
+        //character collision with goals
+        if(this.goal1.box.bounds.intersects(this.character.box.bounds) && !this.moving) {
+            //if the option matches the answer 
+            if(this.opt[0] == this.ans){
+                this.correct();
+            }
+            //if not move back to the maze
+            else {
+                this.charX += 1;
+                this.wrong(1);
+            }
+        }
+        if(this.goal2.box.bounds.intersects(this.character.box.bounds) && !this.moving) {
+            //if the option matches the answer
+            if(this.opt[1] == this.ans){
+                this.correct();
+            }
+            //if not move back to the maze
+            else {
+                this.charX -= 1;
+                this.wrong(2);
+            }
+        }
+        if(this.goal3.box.bounds.intersects(this.character.box.bounds) && !this.moving) {
+            //if the option matches the answer
+            if(this.opt[2] == this.ans){
+                this.correct();
+            }
+            //if not move back to the maze
+            else {
+                this.charY -= 1;
+                this.wrong(3);
+            }
+        }
+        if(this.pauseKey.isDown){
+            this.pause = true;
+            this.pauseGui.visible = true;
+            this.muteIcon.visible = true;
+        }
     }
     else {
-        s = "UDLR";
-    }
+        if(this.pauseKey.isDown){
+            this.pause = false;
+            this.pauseGui.visible = false;
+            this.muteIcon.visible = false;
+        }
 
-    if(this.textField.text == "Correcto") {
-        if(this.sKey.isDown) {
-            this.backgroundMusic.stop();
-            loadState.backgroundMusic.play();
-            this.game.states.switchState( "teacherRoomState" );
+        if(this.muteIcon.box.bounds.contains(this.mouse.x,this.mouse.y) && this.mouse.isDown) {
+            this.game.audio.mute = !this.game.audio.mute;
         }
-    }
-    //if it is moving change the position of the character until it reaches the target cell
-    else if(this.moving) {
-        //check if there is a difrence in the X axis
-        if(this.character.x < this.charX*36 + this.offsetX) {
-            this.character.x += 4;
-        }
-        else if(this.character.x > this.charX*36 + this.offsetX) {
-            this.character.x -= 4;
-        }
-        //check if there is a difrence in the Y axis
-        if(this.character.y < this.charY*36 + this.offsetY) {
-            this.character.y += 4;
-        }
-        else if(this.character.y > this.charY*36 + this.offsetY) {
-            this.character.y -= 4;
-        }
-        //check there is no diffrence
-        if(this.character.x == this.charX*36 + this.offsetX && this.character.y == this.charY*36 + this.offsetY) {
-            this.moving = false;
-        }
-    }
-    //if it is not moving accept inputs
-    else if( this.upKey.isDown && s[0]=='u' ) {
-        this.charY -= 1;
-        this.moving = true;
-    }
-    else if( this.downKey.isDown && s[1]=='d' ) {
-        this.charY += 1;
-        this.moving = true;
-    }
-    else if( this.leftKey.isDown && s[2]=='l' ) {
-        this.charX -= 1;
-        this.moving = true;
-    }
-    else if( this.rightKey.isDown && s[3]=='r' ) {
-        this.charX += 1;
-        this.moving = true;
-    }
-
-    //this.textField.text = "("+Math.floor(this.charX)+","+Math.floor(this.charY)+") "+ s + " " + this.moving;
-
-    //display answers when hovering with the mouse
-    if(this.goal1.box.bounds.contains(this.mouse.x,this.mouse.y)) {
-        this.textField.text = this.opt[0];
-    }
-    if(this.goal2.box.bounds.contains(this.mouse.x,this.mouse.y)) {
-        this.textField.text = this.opt[1];
-    }
-    if(this.goal3.box.bounds.contains(this.mouse.x,this.mouse.y)) {
-        this.textField.text = this.opt[2];
-    }
-    
-    //character collision with goals
-    if(this.goal1.box.bounds.intersects(this.character.box.bounds) && !this.moving) {
-        //if the option matches the answer 
-        if(this.opt[0] == this.ans){
-            this.correct();
-        }
-        //if not move back to the maze
-        else {
-            this.charX += 1;
-            this.wrong(1);
-        }
-    }
-    if(this.goal2.box.bounds.intersects(this.character.box.bounds) && !this.moving) {
-        //if the option matches the answer
-        if(this.opt[1] == this.ans){
-            this.correct();
-        }
-        //if not move back to the maze
-        else {
-            this.charX -= 1;
-            this.wrong(2);
-        }
-    }
-    if(this.goal3.box.bounds.intersects(this.character.box.bounds) && !this.moving) {
-        //if the option matches the answer
-        if(this.opt[2] == this.ans){
-            this.correct();
-        }
-        //if not move back to the maze
-        else {
-            this.charY -= 1;
-            this.wrong(3);
-        }
+        
     }
 }
 
@@ -410,7 +449,7 @@ mazeGameState.wrong = function(i) {
         this.hty.push(i);
     }
     this.moving = true;
-    this.delay = 100;
+    this.delay = 200;
     this.textField.text = "Incorrecto";
 }
 

@@ -9,10 +9,6 @@ loadGameState.create = function(){
     document.getElementById("input").innerHTML = document.getElementById("loginTemplate").innerHTML;
 
     this.background = new Kiwi.GameObjects.StaticImage(this, this.textures.BG2, 0, 0);
-    this.tempSave1 = new Kiwi.GameObjects.StaticImage(
-            this, this.textures.saveCharImg, 30, 50);
-    this.tempSave2 = new Kiwi.GameObjects.StaticImage(
-            this, this.textures.saveCharImg, 30, 150);
 
     var menuW = 100;
     
@@ -56,8 +52,6 @@ loadGameState.create = function(){
     this.menu.getMenuItem(1).input.onDown.add( this.back, this );
 
     this.addChild(this.background);
-    //this.addChild(this.tempSave1);
-    //this.addChild(this.tempSave2);
     this.addChild(this.textField);
 
 };

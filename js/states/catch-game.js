@@ -23,7 +23,10 @@ catchGameState.create = function(){
     this.cowboy.inventory.setItemVariable('coin', 'money', 1);
     this.cowboy.inventory.setItemVariable('bag', 'money', 5);
 
-
+    //stop old music, declare new music and start it
+    this.backgroundMusic = new Kiwi.Sound.Audio( this.game, 'catchTheme', 1, true );
+    loadState.backgroundMusic.stop();
+    this.backgroundMusic.play();
 
     this.coinGroup = new Kiwi.Group(this);
     this.addChild(this.coinGroup);
@@ -33,6 +36,7 @@ catchGameState.create = function(){
 
     this.leftKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.A);
     this.rightKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.D);
+    this.sKey = this.game.input.keyboard.addKey(Kiwi.Input.Keycodes.SPACEBAR);
 
     this.coinText = new Kiwi.GameObjects.Textfield(this, 'Dinero recolectado: 0', 10, 10, '#000');
     this.coinText.fontSize = 20;
@@ -44,6 +48,46 @@ catchGameState.create = function(){
 	this.timer.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_COUNT, this.onTimerCount, this );
 	this.timerCount = 1800;
 	this.addChild(this.counterText);
+
+    //CREATE END GAME SUMMARY
+    this.scoreUI = new Kiwi.GameObjects.StaticImage(this, this.textures.scoreImg, 184, 106);
+    this.scoreUI.alpha = 0.95;
+    this.scoreUI.visible = false;
+
+    this.scoreUITextField1 = new Kiwi.GameObjects.Textfield(this, "Dinero conseguido: ");
+    this.scoreUITextField1.x = this.game.stage.width / 2;
+    this.scoreUITextField1.y = 210;
+    this.scoreUITextField1.fontSize = 15;
+    this.scoreUITextField1.fontWeight = "bold";
+    this.scoreUITextField1.color = '#FFFFFF';
+    this.scoreUITextField1.fontFamily = 'Verdana, sans-serif';
+    this.scoreUITextField1.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    this.scoreUITextField1.visible = false;
+
+    this.scoreUITextField2 = new Kiwi.GameObjects.Textfield(this, "Monedas conseguidas: 1");
+    this.scoreUITextField2.x = this.game.stage.width / 2;
+    this.scoreUITextField2.y = 240;
+    this.scoreUITextField2.fontSize = 15;
+    this.scoreUITextField2.fontWeight = "bold";
+    this.scoreUITextField2.color = '#FFFFFF';
+    this.scoreUITextField2.fontFamily = 'Verdana, sans-serif';
+    this.scoreUITextField2.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    this.scoreUITextField2.visible = false;
+
+    this.scoreUITextField3 = new Kiwi.GameObjects.Textfield(this, "Presiona la barra espaciadora para continuar");
+    this.scoreUITextField3.x = this.game.stage.width / 2;
+    this.scoreUITextField3.y = 350;
+    this.scoreUITextField3.fontSize = 15;
+    this.scoreUITextField3.fontWeight = "bold";
+    this.scoreUITextField3.color = '#FFFFFF';
+    this.scoreUITextField3.fontFamily = 'Verdana, sans-serif';
+    this.scoreUITextField3.textAlign = Kiwi.GameObjects.Textfield.TEXT_ALIGN_CENTER;
+    this.scoreUITextField3.visible = false;
+
+    this.addChild( this.scoreUI );
+    this.addChild( this.scoreUITextField1 );
+    this.addChild( this.scoreUITextField2 );
+    this.addChild( this.scoreUITextField3 );
 
 }
 
@@ -139,4 +183,17 @@ catchGameState.update = function(){
 
 		this.counterText.text = Math.floor (this.timerCount/60) + " sec.";
 	}
+    else {
+        var totalMoney = this.cowboy.inventory.returnItemCount('coin') * this.cowboy.inventory.returnItemVariable('coin', 'money') +
+                            this.cowboy.inventory.returnItemCount('bag') * this.cowboy.inventory.returnItemVariable('bag', 'money');
+        this.scoreUI.visible = true;
+        this.scoreUITextField1.text = "Dinero conseguido :"+totalMoney;
+        this.scoreUITextField1.visible = true;
+        this.scoreUITextField3.visible = true;
+        if(this.sKey.isDown) {
+            this.backgroundMusic.stop();
+            loadState.backgroundMusic.play();
+            this.game.states.switchState("hallwayState");
+        }
+    }
 }

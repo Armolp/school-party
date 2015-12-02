@@ -3,7 +3,7 @@ Parse.initialize("AK26J8RDJqlwxb2wewzz4sE7dpvYJOdVstu7v6be", "RrkuVkdBBws0vADmr1
 var Memory = Parse.Object.extend("Memory");
 var Memory = new Memory();
 
-function getData() {
+function getDataMemory() {
   var query = new Parse.Query(Memory);
   query.find({
     success: function(data) {
@@ -69,4 +69,4 @@ function getData() {
   });
 }
 
-window.onload = getData;
+//window.onload = getDataMemory;

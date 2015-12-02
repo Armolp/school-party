@@ -27,6 +27,7 @@ loadState.preload = function() {
 	this.addImage( "BG1",		 			"assets/BG1.png" );
 	this.addImage( "BG2",		 			"assets/BG2.png" );
 	this.addImage( "background", 			"assets/jungle.png" );
+	this.addImage( "classBG", 				"assets/classBG.png" );
 	this.addImage( "hallwayBGImg",			"assets/hall-bg.png" );
 	this.addImage( "redFelt",		 		"assets/red-felt.png" );
 	this.addImage( "greenFelt",		 		"assets/green-felt.jpg" );
@@ -45,6 +46,8 @@ loadState.preload = function() {
 	this.addImage( "block",					"assets/dark-block.png" );
 
 	this.addImage( "scoreImg",				"assets/puntuacion.png");
+	this.addImage( "pausaImg",				"assets/pausa.png");
+	this.addImage( "boardImg",				"assets/board.png");
 
 	//memory images
 	this.addImage( "memoryTut", 			"assets/memory/memoryTut.png" );
@@ -87,7 +90,7 @@ loadState.preload = function() {
 	
 	//music
 	
-	//this.addAudio( "memoryTheme", 			"assets/music/Pamgaea.mp3" );
+	//this.addAudio( "memoryTheme", 		"assets/music/Pamgaea.mp3" );
 	//this.addAudio( "timeTheme", 			"assets/music/Pixelland.mp3" );
 	//this.addAudio( "mazeTheme", 			"assets/music/Kawai Kitsune.mp3" );
 	//this.addAudio( "catchTheme", 			"assets/music/Kings of Tara.mp3" );

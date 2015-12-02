@@ -8,6 +8,12 @@ var gameOptions = {
 	height: 512
 }
 
+window.onload = function() {
+	getDataTime();
+	getDataSpace();
+	getDataMemory();
+}
+
 var game = new Kiwi.Game('content', 'game', null, gameOptions);
 
 game.states.addState( preloader );

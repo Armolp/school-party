@@ -3,7 +3,7 @@ Parse.initialize("AK26J8RDJqlwxb2wewzz4sE7dpvYJOdVstu7v6be", "RrkuVkdBBws0vADmr1
 var SpaceQuestion = Parse.Object.extend("SpaceQuestion");
 var spaceQuestion = new SpaceQuestion();
 
-function getData() {
+function getDataSpace() {
   var query = new Parse.Query(SpaceQuestion);
   query.find({
     success: function(data) {
@@ -40,4 +40,4 @@ function getData() {
   });
 }
 
-window.onload = getData;
+//window.onload = getDataSpace;
