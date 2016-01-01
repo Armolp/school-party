@@ -24,13 +24,6 @@ mainMenu|->	newgame	|								   |->space
 													   |->connect
 ```
 
-
-## To Do List
-
-* add loading animation
-* finish al the other minigames
-
-
 ### Notes:
 > Proyect in early development, may be missing background, sounds and mechanics.
 > In the blue screen just keep walking until you get to the other end
