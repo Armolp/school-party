@@ -24,7 +24,3 @@ mainMenu|->	newgame	|								   |->space
 													   |->connect
 ```
 
-### Notes:
-> Proyect in early development, may be missing background, sounds and mechanics.
-> In the blue screen just keep walking until you get to the other end
-> 
